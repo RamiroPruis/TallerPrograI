@@ -12,7 +12,6 @@ import Interfaces.IContratacion;
  */
 
 
-
 public abstract class Contratacion implements IContratacion {
 	protected String factura;
 	protected double costo;
@@ -24,7 +23,6 @@ public abstract class Contratacion implements IContratacion {
 
 
 	public Contratacion() {
-
 	}
 
         /**
