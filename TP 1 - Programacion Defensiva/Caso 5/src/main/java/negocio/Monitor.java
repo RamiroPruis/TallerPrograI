@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class Monitor implements ActionListener {
     private static Monitor instance = null;
     private Ivista vista;
-    
+
 
     private Monitor() {
 
@@ -38,7 +38,6 @@ public class Monitor implements ActionListener {
                 Juego.getInstance().probar(vista.getNumero());
                 JOptionPane.showMessageDialog(vista, Juego.getInstance().getEstado());
             } catch (NumeroInvalidoException numeroInvalidoException) {
-                numeroInvalidoException.printStackTrace();
                 JOptionPane.showMessageDialog(vista, numeroInvalidoException.getMessage());
             } catch (EstadoInvalidoException estadoInvalidoException) {
                 JOptionPane.showMessageDialog(vista, estadoInvalidoException.getMessage());
