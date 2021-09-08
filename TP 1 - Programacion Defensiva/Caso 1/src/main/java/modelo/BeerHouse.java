@@ -4,7 +4,13 @@ import java.util.ArrayList;
 
 
 /**
- *
+ * Clase encargada de la logica del programa, tiene mesas, una carta y un estado (abierto:si/no) <br>
+ * 1. El local, para estar abierto, debe tener al menos una cantidad de mesas >= 1 y una<br>
+ * 2. cantidad de productos >=1.<br>
+ * 3. Al inicio de la jornada, todas las mesas deben estar desocupadas.<br>
+ * 4. Al inicio de la jornada, la carta debe estar actualizada con todos los productos disponibles.<br>
+ * 5. Al inicio de la jornada, se determina la cantidad de mesas que se van a habilitar. No<br>
+ * necesariamente se deben habilitar todas las mesas.<br>
  */
 public class BeerHouse {
     private static BeerHouse instance = null;
@@ -12,7 +18,7 @@ public class BeerHouse {
     private int cantMesas;
     private Carta carta;
     private boolean abierto = false;
-    
+
 
     private BeerHouse() {
 

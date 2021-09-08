@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 /**
  * Controlador
  */
@@ -75,6 +76,13 @@ public class Negocio implements ActionListener {
         return mesa;
     }
 
+    /**
+     * POST:Delega la responsabilidad de cerrar la mesa al modelo <br>
+     * Y la responsabilidad de mostrar por pantalla lo sucedido se lo delega a la vista
+     *
+     * @param nroMesa
+     * @return
+     */
     private double cerrarMesa(int nroMesa) {
         double importe = 0;
         try {
@@ -86,6 +94,11 @@ public class Negocio implements ActionListener {
         return importe;
     }
 
+    /**
+     * Recibe un ActionEvent y dependiendo su actionCommand llama a distintos metodos
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         int cantidad = 0;

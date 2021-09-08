@@ -1,5 +1,8 @@
 package modelo;
 
+/**
+ * Clase que simboliza un menu de una cerveceria
+ */
 public class Carta {
     private Productos[] productos = new Productos[5];
 
