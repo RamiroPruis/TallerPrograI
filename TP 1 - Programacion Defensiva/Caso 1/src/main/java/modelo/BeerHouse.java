@@ -3,12 +3,16 @@ package modelo;
 import java.util.ArrayList;
 
 
+/**
+ *
+ */
 public class BeerHouse {
     private static BeerHouse instance = null;
     private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
     private int cantMesas;
     private Carta carta;
     private boolean abierto = false;
+    
 
     private BeerHouse() {
 
@@ -40,6 +44,7 @@ public class BeerHouse {
      */
     public void abrirLocal(int cantMesas) throws MesasInvalidoException {
         //verificarInvariante(cantMesas);
+
 
         if (!(cantMesas >= 1 && cantMesas <= 50))
             throw new MesasInvalidoException();
