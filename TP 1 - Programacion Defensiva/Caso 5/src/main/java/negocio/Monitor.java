@@ -9,6 +9,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase negocio encargada de la comunicacion entre el modelo y la vista, encargada de
+ * tomar accion a partir de las excepciones que lanza la capa de modelo.
+ */
 public class Monitor implements ActionListener {
     private static Monitor instance = null;
     private Ivista vista;
@@ -28,6 +32,12 @@ public class Monitor implements ActionListener {
         return instance;
     }
 
+    /**
+     * Metodo encargado de delegar las funcionalidades desde la vista al modelo<br>
+     * POST: Delegaciones, o en caso de recibir alguna excepcion comunicarlo por medio de la ventana
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equalsIgnoreCase("reset")) {

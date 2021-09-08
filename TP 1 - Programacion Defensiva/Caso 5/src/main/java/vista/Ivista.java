@@ -7,6 +7,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 
+/**
+ * Clase interfaz grafica, encargada de extraer datos desde la ventana e interactuar directamente con el usuario
+ */
 public class Ivista extends JFrame {
 
     private JPanel contentPane;
@@ -60,6 +63,9 @@ public class Ivista extends JFrame {
     }
 
 
+    /**
+     * @return el numero escrito por el usuario
+     */
     public double getNumero() {
         return Double.parseDouble(this.textFieldElijeNumero.getText());
     }
