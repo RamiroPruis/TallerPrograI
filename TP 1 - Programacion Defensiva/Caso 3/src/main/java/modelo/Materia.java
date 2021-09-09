@@ -1,8 +1,12 @@
 package modelo;
 
-public abstract class Materia {
+public class Materia {
     private String estado;
     private int nota;
+
+    public Materia(String estado) {
+        this.estado = estado;
+    }
 
     public Materia(String estado, int nota) {
         this.estado = estado;

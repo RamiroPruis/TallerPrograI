@@ -15,6 +15,14 @@ public class Alumno {
         this.apellido = apellido;
     }
 
+    public void setMateria(String materia, String condicion, int nota){
+        this.materias.put(materia, new Materia(condicion,nota));
+    }
+
+    public void setMateria(String materia, String condicion){
+        this.materias.put(materia, new Materia(condicion));
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -29,5 +37,9 @@ public class Alumno {
 
     public HashMap<String, Materia> getMaterias() {
         return materias;
+    }
+
+    public int getNroLegajo(){
+        return this.nroLegajo;
     }
 }

@@ -5,9 +5,11 @@ import excepciones.NoExisteLegajoException;
 import excepciones.NoExisteMateriaException;
 import modelo.Certificado;
 
-public class Negocio {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    private static Negocio _instance=null;
+public class Negocio implements ActionListener {
+    private static Negocio _instance;
     public Certificado certificado;
     private IVista vista;
 
@@ -15,16 +17,14 @@ public class Negocio {
         this.certificado=new Certificado();
     }
 
-
     public static Negocio getInstance(){
-        if (_instance == null)
-            _instance = new Negocio();
+        if (_instance==null)
+            _instance=new Negocio();
         return _instance;
     }
-
-
     public void setVista(IVista vista){
         this.vista=vista;
+        this.vista.addActionListener(this);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Negocio {
         try {
             apenom = this.certificado.traerApellidoyNombre();
         } catch (NoExisteLegajoException e) {
-            e.printStackTrace();
+            vista.mostrarEstado(e.getLocalizedMessage());
         }
         return apenom;
     }
@@ -61,7 +61,7 @@ public class Negocio {
         try {
             estado=this.certificado.traerEstado(Materia);
         } catch (NoExisteLegajoException | NoExisteMateriaException e) {
-            e.printStackTrace();
+            this.vista.mostrarEstado(e.getLocalizedMessage());
         }
         return estado;
     }
@@ -76,7 +76,7 @@ public class Negocio {
         try {
             Nota=this.certificado.traerNota(Materia);
         } catch (NoExisteLegajoException | NoExisteMateriaException e) {
-            e.printStackTrace();
+            this.vista.mostrarEstado(e.getLocalizedMessage());
         }
         return Nota;
     }
@@ -91,10 +91,30 @@ public class Negocio {
         try {
             condicion=this.certificado.traerCondicion();
         } catch (NoExisteLegajoException e) {
-            e.printStackTrace();
+            this.vista.mostrarEstado(e.getLocalizedMessage());
         }
         return condicion;
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String accion = e.getActionCommand();
+        if (accion.equalsIgnoreCase("MostrarNota")){
+            vista.mostrarMensaje(this.traerNota(vista.getTextMateria()));
+        }
+        else if (accion.equalsIgnoreCase("MostrarEstado")){
+            vista.mostrarMensaje(this.traerEstado(vista.getTextMateria()));
+        }
+        else if (accion.equalsIgnoreCase("MostrarCertificado")){
+            vista.mostrarCertificado();
+        }
+        else if (accion.equalsIgnoreCase("Solicitar")){
+            vista.pedirCertificado(vista.getTextLegajo());
+        }
+    }
+
+    public Certificado getCertificado(){
+        return this.certificado;
+    }
 }

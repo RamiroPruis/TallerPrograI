@@ -15,6 +15,10 @@ public class Facultad {
         return _instance;
     }
 
+    public void addAlumno(Alumno alumno){
+        this.alumnos.put(alumno.getNroLegajo(),alumno);
+    }
+
     public Alumno getAlumno(int legajo){
         return alumnos.get(legajo);
     }
