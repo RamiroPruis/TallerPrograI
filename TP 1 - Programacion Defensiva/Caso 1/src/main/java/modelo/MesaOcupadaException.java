@@ -1,5 +1,8 @@
 package modelo;
 
+/**
+ * Clase tipo exception para cuando la mesa esta ocupada y no es posible ocuparla
+ */
 public class MesaOcupadaException extends Throwable {
     private String why;
 
