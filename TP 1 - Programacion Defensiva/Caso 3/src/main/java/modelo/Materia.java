@@ -10,5 +10,11 @@ public abstract class Materia {
             this.nota = nota;
     }
 
+    public String getEstado() {
+        return estado;
+    }
 
+    public int getNota() {
+        return nota;
+    }
 }
