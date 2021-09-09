@@ -1,5 +1,8 @@
 package modelo;
 
+/**
+ * Clase mesa que representa el estado de la mesa, que puede ser activa(si/no), habilitada (si/no), y la cuenta.
+ */
 public class Mesa {
     private boolean activa;
     private boolean habilitada;

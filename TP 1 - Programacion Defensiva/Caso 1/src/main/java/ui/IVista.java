@@ -1,5 +1,6 @@
 package ui;
 
+
 import negocio.Negocio;
 
 import javax.swing.*;
@@ -89,14 +90,29 @@ public class IVista extends JFrame {
 //        });
 //    }
 
+    /**
+     * Desde la interfaz grafica extrae la cantidad de mesas a abrir
+     *
+     * @return
+     */
     public int abrirLocal() {
         return Integer.parseInt(this.textField.getText());
     }
 
+    /**
+     * Desde la interfaz grafica extrae la mesa que se desea ocupar
+     *
+     * @return
+     */
     public int ocuparMesa() {
         return Integer.parseInt(this.textFieldOcuparMesa.getText());
     }
 
+    /**
+     * Desde la interfaz grafica extrae la mesa que se quiere cerrar
+     *
+     * @return
+     */
     public int cerrarMesa() {
         return Integer.parseInt(this.textFieldCerrarMesa.getText());
     }
