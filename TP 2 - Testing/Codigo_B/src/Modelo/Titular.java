@@ -135,7 +135,6 @@ public abstract class Titular implements Cloneable {
 			Domicilio domicilio = it.next();
 			respuesta += domicilio.getContrato().getCosto();
 		}
-
 		return respuesta;
 	}
 
