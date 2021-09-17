@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import Excepciones.DomicilioRepetidoException;
 import Factory.DomicilioFactory;
+import Interfaces.IContratacion;
 
 /**
  * @author Taller1
