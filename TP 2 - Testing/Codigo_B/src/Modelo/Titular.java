@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import Excepciones.DomicilioRepetidoException;
 import Factory.DomicilioFactory;
+import Interfaces.IContratacion;
 
 /**
  * @author Taller1
@@ -135,7 +136,6 @@ public abstract class Titular implements Cloneable {
 			Domicilio domicilio = it.next();
 			respuesta += domicilio.getContrato().getCosto();
 		}
-
 		return respuesta;
 	}
 
