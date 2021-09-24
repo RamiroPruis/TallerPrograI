@@ -51,6 +51,31 @@ class AgregarAlumnoTest {
     }
 
     @Test
+    void testAgregaAlumnoSinAtributos() {
+
+        Sistema sistema = escenario.getSistema();
+        Alumno alumno = new Alumno();
+        IndiceDoble<Alumno> alumnos = sistema.getAlumnos();
+
+        try {
+            sistema.agregarAlumno(alumno);
+            assertTrue(alumnos.contieneValor(alumno));
+            try {
+                assertEquals(alumno, alumnos.buscarPorClavePrimaria(alumno.getClavePrimaria()));
+            } catch (NoEncontradoException e) {
+                fail("No deberia no encontrarse el alumno");
+            }
+
+        } catch (ClaveYaExistenteException e) {
+            fail("No podemos hacer nada al respecto si es este metodo quien automaticamente crea el legajo");
+        } catch (DatoInvalidoException e) {
+            fail("No deberia haberse lanzado esta excepcion ya que el mail es valido");
+        }
+
+    }
+
+
+    @Test
     void testAgregaAlumnoIncorrectoRepetido() {
         Sistema sistema = escenario.getSistema();
         Alumno alumno = new Alumno("roberto", "Suipacha 3456", "roberto@mail"); //El alumno ya existe en el escenario (distinta instancia)
