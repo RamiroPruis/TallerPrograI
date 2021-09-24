@@ -16,7 +16,7 @@ public class EscenarioSistemaConAlumnosCorrectos {
             sistema.agregarAlumno(new Alumno("Ramiro", "Avenidaa","ramiro@gmail.com"));
             sistema.agregarAlumno(new Alumno("Mata", "Avenida123", "mata@gmail.com"));
             sistema.agregarAlumno(new Alumno("Camila", "Avenida321", "camila@gmail.com"));
-            sistema.agregarAlumno(new Alumno("Marianito", "Avenida432432", "marianito@gmail.com"));
+            sistema.agregarAlumno(new Alumno("Marianito Garcia", "Avenida432432", "marianito@gmail.com"));
             sistema.agregarAlumno(new Alumno("Igna", "Avenidas213123", "igna@gmail.com"));
             sistema.agregarAlumno(new Alumno("roberto","Suipacha 3456", "roberto@mail"));
 
