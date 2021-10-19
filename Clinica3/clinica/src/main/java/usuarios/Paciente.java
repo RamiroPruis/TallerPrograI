@@ -31,6 +31,33 @@ public abstract class Paciente extends Usuarios implements Priorizable {
 		this.RangoEtario = rangoEtario;
 	}
 
+	public Paciente() {
+	}
+
+	public String getRangoEtario() {
+		return RangoEtario;
+	}
+
+	public void setRangoEtario(String rangoEtario) {
+		RangoEtario = rangoEtario;
+	}
+
+	public void setInternaciones(Hashtable<Habitacion, Integer> internaciones) {
+		this.internaciones = internaciones;
+	}
+
+	public void setConsultas(Hashtable<Medico, Integer> consultas) {
+		this.consultas = consultas;
+	}
+
+	public static int getNumHistoriaClinica() {
+		return numHistoriaClinica;
+	}
+
+	public static void setNumHistoriaClinica(int numHistoriaClinica) {
+		Paciente.numHistoriaClinica = numHistoriaClinica;
+	}
+
 	/**
 	 * Registra una internacion en la estadia del hospital actual del paciente. Si
 	 * vuelve a una habitacion en la que ya estuvo, simplemente le suma dias.<br>

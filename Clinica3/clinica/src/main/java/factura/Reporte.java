@@ -20,6 +20,25 @@ public class Reporte implements Comparable {
         this.subtotal = subtotal;
     }
 
+    public Reporte() {
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public void setFecha(GregorianCalendar fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setCantConsultas(int cantConsultas) {
+        this.cantConsultas = cantConsultas;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
     /**
      * Retorna la fecha de la facturacion
      * 

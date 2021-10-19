@@ -34,6 +34,41 @@ public class Factura {
 			throw new PacienteInvalidoException("Se trato de crear una factura con un paciente null");
 	}
 
+	public Factura() {
+	}
+
+	public static int getNumFacturaMax() {
+		return numFacturaMax;
+	}
+
+	public static void setNumFacturaMax(int numFacturaMax) {
+		Factura.numFacturaMax = numFacturaMax;
+	}
+
+	public int getNumFactura() {
+		return numFactura;
+	}
+
+	public void setNumFactura(int numFactura) {
+		this.numFactura = numFactura;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public void setFecha(GregorianCalendar fecha) {
+		this.fecha = fecha;
+	}
+
+	public float getValorAgregadoConsulta() {
+		return valorAgregadoConsulta;
+	}
+
 	/**
 	 * Imprime la factura con los datos de Prestacion, Valor, Cantidad, Subtotal
 	 * Post: Imprime en formato de tabla la informacion
