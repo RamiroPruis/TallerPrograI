@@ -22,6 +22,17 @@ public abstract class Medico extends Usuarios {
       this.Honorario = honorarioBasico;
    }
 
+   public Medico() {
+   }
+
+   public void setHonorario(double honorario) {
+      Honorario = honorario;
+   }
+
+   public void setReporte(TreeSet<Reporte> reporte) {
+      this.reporte = reporte;
+   }
+
    /**
     * Obtiene el Honorario del medico generado
     * 

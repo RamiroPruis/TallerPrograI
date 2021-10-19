@@ -18,6 +18,9 @@ public abstract class Usuarios implements Comparable<Usuarios> {
         this.numero = numero;
     }
 
+    public Usuarios() {
+    }
+
     /**
      * Retorna el dni del usuario
      * 
@@ -61,6 +64,30 @@ public abstract class Usuarios implements Comparable<Usuarios> {
      */
     public String getNombre() {
         return nombre;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     /**
