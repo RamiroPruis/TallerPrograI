@@ -15,6 +15,9 @@ import usuarios.Paciente;
 public class Prueba {
 
         public static void main(String[] args) {
+
+
+
                 // Creamos la Clinica
                 Clinica clinica = Clinica.getInstance("Hospital", "Avenida siempre viva", "123123", "Balcarce");
                 // Creacion de medicos
@@ -84,6 +87,11 @@ public class Prueba {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                 }
+
+
+                //Probamos la persistencia hacia afuera con los pacientes
+                clinica.persistenciaPacientesOut();
+
 
         }
 }

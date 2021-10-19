@@ -73,7 +73,7 @@ public class PersistenciaXML implements IPersistencia{
      * @return
      * @throws IOException
      * @throws ClassNotFoundException
-     */S
+     */
     @Override
     public Object leer() throws IOException, ClassNotFoundException {
         return xmlDecoder.readObject();

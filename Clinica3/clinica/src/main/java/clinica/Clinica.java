@@ -7,11 +7,14 @@ import factura.Factura;
 import factura.Reporte;
 import lugares.Habitacion;
 import lugares.SalaDeEspera;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaXML;
 import usuarios.Medico;
 import usuarios.MedicoFactory;
 import usuarios.Paciente;
 import usuarios.PacienteFactory;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -23,7 +26,6 @@ public class Clinica {
 	private static Clinica instance = null;
 	// DATOS DE LA CLINICA
 	private String nombre, direccion, telefono, ciudad;
-
 	private Set<Medico> medicos = new TreeSet<>();
 	private Set<Paciente> pacientes = new TreeSet<>();
 	private PriorityQueue<Paciente> listaEspera;
@@ -36,6 +38,7 @@ public class Clinica {
 	public Set<Paciente> getPacientes() {
 		return pacientes;
 	}
+
 
 	/**
 	 * Constructor privado, es invocado por el metodo <i>getInstance</i>
@@ -313,4 +316,20 @@ public class Clinica {
 		}
 		paciente.ReseteaPrestaciones();
 	}
+
+
+	public void persistenciaPacientesOut(){
+		IPersistencia persistencia = new PersistenciaXML();
+
+		try {
+			persistencia.abrirOutput("pacientes.xml");
+			persistencia.escribir(this.pacientes);
+			persistencia.cerrarOutput();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
 }

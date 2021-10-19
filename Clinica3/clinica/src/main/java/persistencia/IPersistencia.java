@@ -11,4 +11,5 @@ public interface IPersistencia <E>{
     void cerrarInput() throws IOException;
     void escribir(E objeto) throws IOException;
     E leer() throws IOException, ClassNotFoundException;
+
 }

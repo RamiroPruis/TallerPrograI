@@ -1,8 +1,11 @@
 package usuarios;
 
+import java.io.IOException;
 import java.util.Hashtable;
 
 import lugares.*;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaXML;
 
 /**
  * Establece los atributos de un paciente y almacena sus consultas
@@ -118,5 +121,6 @@ public abstract class Paciente extends Usuarios implements Priorizable {
 		internaciones.clear();
 		consultas.clear();
 	}
+
 
 }
