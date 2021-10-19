@@ -50,7 +50,6 @@ public class Prueba {
                 }
 
 
-
                 Set<Paciente> pacientes = clinica.getPacientes();
                 Iterator<Paciente> pacientesIterator = pacientes.iterator();
                 Paciente pacientePrueba = pacientesIterator.next();
@@ -91,7 +90,7 @@ public class Prueba {
                         e.printStackTrace();
                 }
 
-                clinica.persistenciaMedicosOut();
+                clinica.persistenciaFacturasOut();
 
 
 
