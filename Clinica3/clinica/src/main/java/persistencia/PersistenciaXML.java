@@ -14,9 +14,10 @@ public class PersistenciaXML implements IPersistencia{
 
 
     /**
-     * Abre y prepara un archivo para la
-     * @param nombre
-     * @throws IOException
+     * Abre un input y prepara un archivo para ser leido.
+     *
+     * @param nombre nombre del archivo xml
+     * @throws IOException Si el archivo no existe
      */
     @Override
     public void abrirInput(String nombre) throws IOException {
@@ -25,6 +26,11 @@ public class PersistenciaXML implements IPersistencia{
 
     }
 
+    /**
+     * Abre un output y prepara un archivo para su carga
+     * @param nombre
+     * @throws IOException Si no existe pero no puede ser creado o si es una carpeta.
+     */
     @Override
     public void abrirOutput(String nombre) throws IOException {
         fileOutputStream = new FileOutputStream(nombre);
@@ -32,23 +38,42 @@ public class PersistenciaXML implements IPersistencia{
 
     }
 
+    /**
+     * Cierra el output abierto anteriormente para persistir datos
+     * @throws IOException
+     */
     @Override
     public void cerrarOutput() throws IOException {
         if (fileOutputStream != null)
             fileOutputStream.close();
     }
 
+    /**
+     * Cierra el input anteriormente abierto para la carga de datos en el programa a partir de un archivo
+     * @throws IOException
+     */
     @Override
     public void cerrarInput() throws IOException {
         if (fileInputStream !=null)
             fileInputStream.close();
     }
 
+    /**
+     * Escribe en el archivo seleccionado el objeto para persistirlo
+     * @param objeto
+     * @throws IOException
+     */
     @Override
     public void escribir(Object objeto) throws IOException {
         xmlEncoder.writeObject(objeto);
     }
 
+    /**
+     * A partir del input, lee un archivo .xml y retorna un objeto
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */S
     @Override
     public Object leer() throws IOException, ClassNotFoundException {
         return xmlDecoder.readObject();
