@@ -17,6 +17,17 @@ public abstract class MedicoDecorator extends Medico {
         this.medico = medico;
     }
 
+    public MedicoDecorator() {
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
     /**
      * Delega el seteo del honorario al medico que tiene como atributo, es decir
      * llama al setHonorario del medico que es quien calcula el honorario

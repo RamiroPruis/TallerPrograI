@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Set;
@@ -9,15 +10,14 @@ import exceptions.FechaInvalidaException;
 import exceptions.PacienteInvalidoException;
 import lugares.HabPrivada;
 import lugares.Habitacion;
+import persistencia.PersistenciaXML;
 import usuarios.Medico;
 import usuarios.Paciente;
 
 public class Prueba {
 
         public static void main(String[] args) {
-
-
-
+                PersistenciaXML xml = new PersistenciaXML();
                 // Creamos la Clinica
                 Clinica clinica = Clinica.getInstance("Hospital", "Avenida siempre viva", "123123", "Balcarce");
                 // Creacion de medicos
@@ -43,10 +43,13 @@ public class Prueba {
                 for (Paciente paciente : clinica.getPacientes()) {
                         System.out.println(paciente.getNombre());
                 }
+
                 System.out.println("MEDICOS");
                 for (Medico medico : clinica.getMedicos()) {
                         System.out.format("%20s $%8.2f%n", medico.getNombre(), medico.getHonorario());
                 }
+
+
 
                 Set<Paciente> pacientes = clinica.getPacientes();
                 Iterator<Paciente> pacientesIterator = pacientes.iterator();
@@ -88,9 +91,8 @@ public class Prueba {
                         e.printStackTrace();
                 }
 
+                clinica.persistenciaMedicosOut();
 
-                //Probamos la persistencia hacia afuera con los pacientes
-                clinica.persistenciaPacientesOut();
 
 
         }

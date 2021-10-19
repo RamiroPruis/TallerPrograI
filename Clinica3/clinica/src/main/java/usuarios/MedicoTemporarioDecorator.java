@@ -10,6 +10,9 @@ public class MedicoTemporarioDecorator extends MedicoDecorator {
         setHonorario();
     }
 
+    public MedicoTemporarioDecorator() {
+    }
+
     /**
      * Delega el seteo del honorario al medico que tiene como atributo, es decir
      * llama al setHonorario del medico que es quien calcula el honorario

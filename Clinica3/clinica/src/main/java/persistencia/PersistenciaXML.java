@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class PersistenciaXML implements IPersistencia{
+public class PersistenciaXML implements IPersistencia<Object>{
     private XMLEncoder xmlEncoder;
     private XMLDecoder xmlDecoder;
     private FileOutputStream fileOutputStream;
@@ -44,8 +44,8 @@ public class PersistenciaXML implements IPersistencia{
      */
     @Override
     public void cerrarOutput() throws IOException {
-        if (fileOutputStream != null)
-            fileOutputStream.close();
+        if (xmlEncoder != null)
+            xmlEncoder.close();
     }
 
     /**
@@ -54,8 +54,8 @@ public class PersistenciaXML implements IPersistencia{
      */
     @Override
     public void cerrarInput() throws IOException {
-        if (fileInputStream !=null)
-            fileInputStream.close();
+        if (xmlDecoder !=null)
+            xmlDecoder.close();
     }
 
     /**

@@ -330,6 +330,18 @@ public class Clinica {
 		}
 	}
 
+	public void persistenciaMedicosOut(){
+		IPersistencia persistencia = new PersistenciaXML();
+
+		try {
+			persistencia.abrirOutput("medicos.xml");
+			persistencia.escribir(this.medicos);
+			persistencia.cerrarOutput();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 
 }
