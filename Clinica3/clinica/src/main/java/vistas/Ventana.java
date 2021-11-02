@@ -1,15 +1,13 @@
 package vistas;
 
+import exceptions.NoExisteException;
+import usuarios.*;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,26 +23,11 @@ public class Ventana extends JFrame {
     private JTextField textField;
     private JLabel lblCantDias;
     private JButton btnDarAlta;
+    private DefaultListModel<Paciente> modeloPaciente = new DefaultListModel<Paciente>();
+    private DefaultListModel<Medico> modeloMedico = new DefaultListModel<Medico>();
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Ventana frame = new Ventana();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
-    /**
-     * Create the frame.
-     */
+
     public Ventana() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 735, 474);
@@ -53,11 +36,36 @@ public class Ventana extends JFrame {
         setContentPane(this.contentPane);
         this.contentPane.setLayout(null);
 
-        this.listPacientes = new JList();
+        this.listPacientes = new JList<Paciente>();
+        this.listPacientes.setModel(this.modeloPaciente);
+        this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+
+        try {
+            this.modeloPaciente.addElement(PacienteFactory.getPaciente("657614321", "Moreno 1239", "Mar del plata", "2234564687", "Veronica Galindo",
+                    "Mayor"));
+        } catch (NoExisteException e) {
+            e.printStackTrace();
+        }
         this.listPacientes.setBounds(232, 47, 193, 337);
         this.contentPane.add(this.listPacientes);
 
-        this.listMedicos = new JList();
+        this.listMedicos = new JList<Medico>();
+        this.listMedicos.setModel(this.modeloMedico);
+        this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+        try {
+            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                    "Clinico", "Permanente"));
+            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                    "Clinico", "Permanente"));
+            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                    "Clinico", "Permanente"));
+            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                    "Clinico", "Permanente"));
+            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
+                    "Clinico", "Permanente"));
+        } catch (NoExisteException e) {
+            e.printStackTrace();
+        }
         this.listMedicos.setBounds(10, 50, 193, 337);
         this.contentPane.add(this.listMedicos);
 
@@ -92,6 +100,7 @@ public class Ventana extends JFrame {
         this.btnDarAlta.setActionCommand("DardeAlta");
         this.btnDarAlta.setBounds(483, 294, 139, 23);
         this.contentPane.add(this.btnDarAlta);
+        this.setVisible(true);
     }
 
 

@@ -97,4 +97,8 @@ public abstract class Medico extends Usuarios {
 
    }
 
+   @Override
+   public String toString() {
+      return nombre;
+   }
 }

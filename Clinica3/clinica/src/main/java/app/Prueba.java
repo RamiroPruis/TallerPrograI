@@ -13,6 +13,7 @@ import lugares.Habitacion;
 import persistencia.PersistenciaXML;
 import usuarios.Medico;
 import usuarios.Paciente;
+import vistas.Ventana;
 
 public class Prueba {
 
@@ -91,6 +92,9 @@ public class Prueba {
                 }
 
                 clinica.persistenciaFacturasOut();
+
+
+                Ventana ventana = new Ventana();
 
 
 
