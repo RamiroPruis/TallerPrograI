@@ -10,12 +10,14 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Ventana extends JFrame implements IVista {
 
     private JPanel contentPane;
-    private JList listPacientes;
-    private JList listMedicos;
+    private JList<Paciente> listPacientes;
+    private JList<Medico> listMedicos;
     private JLabel lblPacientes;
     private JLabel lblMedicos;
     private JButton btnConsulta;
@@ -39,33 +41,12 @@ public class Ventana extends JFrame implements IVista {
         this.listPacientes = new JList<Paciente>();
         this.listPacientes.setModel(this.modeloPaciente);
         this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-
-        try {
-            this.modeloPaciente.addElement(PacienteFactory.getPaciente("657614321", "Moreno 1239", "Mar del plata", "2234564687", "Veronica Galindo",
-                    "Mayor"));
-        } catch (NoExisteException e) {
-            e.printStackTrace();
-        }
         this.listPacientes.setBounds(232, 47, 193, 337);
         this.contentPane.add(this.listPacientes);
 
         this.listMedicos = new JList<Medico>();
         this.listMedicos.setModel(this.modeloMedico);
         this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        try {
-            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
-                    "Clinico", "Permanente"));
-            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
-                    "Clinico", "Permanente"));
-            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
-                    "Clinico", "Permanente"));
-            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
-                    "Clinico", "Permanente"));
-            this.modeloMedico.addElement(MedicoFactory.getMedico("234565", "Marconi 2345", "Mar del Plata", "223456732", "Susana Ibanez", 1502, 3000,
-                    "Clinico", "Permanente"));
-        } catch (NoExisteException e) {
-            e.printStackTrace();
-        }
         this.listMedicos.setBounds(10, 50, 193, 337);
         this.contentPane.add(this.listMedicos);
 
@@ -103,6 +84,8 @@ public class Ventana extends JFrame implements IVista {
         this.setVisible(true);
     }
 
+
+
     @Override
     public void addActionListener(ActionListener controller) {
 
@@ -110,5 +93,59 @@ public class Ventana extends JFrame implements IVista {
         this.btnInternacion.addActionListener(controller);
         this.btnConsulta.addActionListener(controller);
 
+    }
+
+    @Override
+    public Paciente getPacienteSelcted() {
+        return this.listPacientes.getSelectedValue();
+    }
+
+    @Override
+    public Medico getMedicoSelected() {
+        return this.listMedicos.getSelectedValue();
+    }
+
+    @Override
+    public void actualizaListaPacientes(Set<Paciente> pacientes) {
+        Iterator<Paciente> it = pacientes.iterator();
+        Paciente asociado;
+
+        while (it.hasNext()) {
+            asociado = it.next();
+            if (!this.modeloPaciente.contains(asociado)) {
+                this.modeloPaciente.addElement(asociado);
+                this.setTextField();
+            } else {
+                this.modeloPaciente.remove(this.modeloPaciente.indexOf(asociado));
+//                if (this.modeloPaciente.isEmpty())
+////                    this.btnComenzar.setEnabled(false);
+            }
+            listPacientes.clearSelection();
+        }
+    }
+
+    private void setTextField(){
+        this.textField.setText("");
+    }
+
+
+
+    @Override
+    public void actualizaListaMedicos(Set<Medico> medicos) {
+        Iterator<Medico> it = medicos.iterator();
+        Medico medico;
+
+        while (it.hasNext()) {
+            medico = it.next();
+            if (!this.modeloMedico.contains(medico)) {
+                this.modeloMedico.addElement(medico);
+                this.setTextField();
+            } else {
+                this.modeloMedico.remove(this.modeloMedico.indexOf(medico));
+//                if (this.modeloPaciente.isEmpty())
+////                    this.btnComenzar.setEnabled(false);
+            }
+            listMedicos.clearSelection();
+        }
     }
 }
