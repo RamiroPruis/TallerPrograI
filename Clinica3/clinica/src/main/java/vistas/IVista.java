@@ -13,4 +13,5 @@ public interface IVista {
     Medico getMedicoSelected();
     void actualizaListaPacientes(Set<Paciente> pacientes);
     void actualizaListaMedicos(Set<Medico> medicos);
+    int getCantidadDias();
 }

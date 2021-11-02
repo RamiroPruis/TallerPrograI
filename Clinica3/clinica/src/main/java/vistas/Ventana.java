@@ -148,4 +148,9 @@ public class Ventana extends JFrame implements IVista {
             listMedicos.clearSelection();
         }
     }
+
+    @Override
+    public int getCantidadDias() {
+         return Integer.parseInt(this.textField.getText());
+    }
 }
