@@ -11,6 +11,8 @@ public interface IVista {
     void addActionListener(ActionListener controlador);
     Paciente getPacienteSelcted();
     Medico getMedicoSelected();
+
     void actualizaListaPacientes(Set<Paciente> pacientes);
     void actualizaListaMedicos(Set<Medico> medicos);
+    int getCantidadDias();
 }

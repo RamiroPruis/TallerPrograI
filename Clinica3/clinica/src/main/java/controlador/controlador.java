@@ -1,17 +1,23 @@
 package controlador;
 
 import clinica.Clinica;
+import exceptions.PacienteInvalidoException;
+import usuarios.Medico;
 import usuarios.Paciente;
 import vistas.IVista;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.GregorianCalendar;
 
 public class controlador implements WindowListener, ActionListener {
 
     private IVista ventanaMovimientos;
+    private Clinica clinica = Clinica.getInstance();
 
 
     public controlador(IVista ventanaMovimientos) {
@@ -28,13 +34,29 @@ public class controlador implements WindowListener, ActionListener {
         String action = e.getActionCommand();
 
         if (action.equalsIgnoreCase("GenerarConsulta")){
-            //llama al modelo con paciente seleccionado
+            Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
+            Medico medicoAct = this.ventanaMovimientos.getMedicoSelected();
+
+            if (pacienteAct != null && medicoAct != null)
+                this.clinica.agregaConsultaAPaciente(pacienteAct,medicoAct);
+            else
+                if (pacienteAct == null)
+                    JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Tiene que seleccionar un paciente");
+                else
+                    JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Tiene que seleccionar un medico");
         }
         else if (action.equalsIgnoreCase("GeneraInternaciones")){
-           //llama al modelo
+
         }
         else if (action.equalsIgnoreCase("DardeAlta")){
-            //lama al modelo
+            Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
+            GregorianCalendar fecha = new GregorianCalendar();
+
+            try {
+                this.clinica.imprimeFacturaDePaciente(pacienteAct,fecha);
+            } catch (PacienteInvalidoException ex) {
+               JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Seleccione un paciente valido");
+            }
         }
     }
 
@@ -45,9 +67,9 @@ public class controlador implements WindowListener, ActionListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Clinica.getInstance().persistenciaFacturasOut();
-        Clinica.getInstance().persistenciaMedicosOut();
-        Clinica.getInstance().persistenciaPacientesOut();
+        this.clinica.persistenciaFacturasOut();
+        this.clinica.persistenciaMedicosOut();
+        this.clinica.persistenciaPacientesOut();
     }
 
     @Override
