@@ -25,8 +25,8 @@ public class Ventana extends JFrame implements IVista {
     private JTextField textField;
     private JLabel lblCantDias;
     private JButton btnDarAlta;
-    private DefaultListModel<Paciente> modeloPaciente = new DefaultListModel<Paciente>();
-    private DefaultListModel<Medico> modeloMedico = new DefaultListModel<Medico>();
+    private DefaultListModel<Paciente> modeloPaciente = new DefaultListModel<>();
+    private DefaultListModel<Medico> modeloMedico = new DefaultListModel<>();
 
 
 
@@ -41,13 +41,13 @@ public class Ventana extends JFrame implements IVista {
         this.listPacientes = new JList<Paciente>();
         this.listPacientes.setModel(this.modeloPaciente);
         this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listPacientes.setBounds(232, 47, 193, 337);
+        this.listPacientes.setBounds(10, 50, 193, 337);
         this.contentPane.add(this.listPacientes);
 
         this.listMedicos = new JList<Medico>();
         this.listMedicos.setModel(this.modeloMedico);
         this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listMedicos.setBounds(10, 50, 193, 337);
+        this.listMedicos.setBounds(232, 47, 193, 337);
         this.contentPane.add(this.listMedicos);
 
         this.lblPacientes = new JLabel("Lista de Pacientes");
@@ -108,15 +108,15 @@ public class Ventana extends JFrame implements IVista {
     @Override
     public void actualizaListaPacientes(Set<Paciente> pacientes) {
         Iterator<Paciente> it = pacientes.iterator();
-        Paciente asociado;
+        Paciente paciente;
 
         while (it.hasNext()) {
-            asociado = it.next();
-            if (!this.modeloPaciente.contains(asociado)) {
-                this.modeloPaciente.addElement(asociado);
+            paciente = it.next();
+            if (!this.modeloPaciente.contains(paciente)) {
+                this.modeloPaciente.addElement(paciente);
                 this.setTextField();
             } else {
-                this.modeloPaciente.remove(this.modeloPaciente.indexOf(asociado));
+                this.modeloPaciente.remove(this.modeloPaciente.indexOf(paciente));
 //                if (this.modeloPaciente.isEmpty())
 ////                    this.btnComenzar.setEnabled(false);
             }
