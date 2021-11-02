@@ -95,6 +95,8 @@ public class Prueba {
 
 
                 Ventana ventana = new Ventana();
+                ventana.actualizaListaMedicos(Clinica.getInstance().getMedicos());
+                ventana.actualizaListaPacientes(Clinica.getInstance().getPacientes());
 
 
 
