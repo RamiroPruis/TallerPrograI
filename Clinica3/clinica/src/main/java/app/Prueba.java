@@ -15,7 +15,6 @@ import usuarios.Medico;
 import usuarios.Paciente;
 
 public class Prueba {
-
         public static void main(String[] args) {
                 PersistenciaXML xml = new PersistenciaXML();
                 // Creamos la Clinica
@@ -91,8 +90,6 @@ public class Prueba {
                 }
 
                 clinica.persistenciaFacturasOut();
-
-
 
         }
 }

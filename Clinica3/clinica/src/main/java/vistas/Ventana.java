@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements IVista {
 
     private JPanel contentPane;
     private JList listPacientes;
@@ -94,7 +94,7 @@ public class Ventana extends JFrame {
         this.contentPane.add(this.btnDarAlta);
     }
 
-
+    @Override
     public void addActionListener(ActionListener controller) {
 
         this.btnDarAlta.addActionListener(controller);
