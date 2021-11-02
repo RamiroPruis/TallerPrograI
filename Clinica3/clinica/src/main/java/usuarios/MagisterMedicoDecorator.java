@@ -10,6 +10,9 @@ public class MagisterMedicoDecorator extends MedicoDecorator {
         setHonorario();
     }
 
+    public MagisterMedicoDecorator() {
+    }
+
     @Override
     public void setHonorario() {
         double honorario = medico.getHonorario();

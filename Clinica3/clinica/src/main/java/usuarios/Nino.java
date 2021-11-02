@@ -21,6 +21,9 @@ public class Nino extends Paciente implements Priorizable {
         super(dni, domicilio, ciudad, telefono, nombre, edad);
     }
 
+    public Nino() {
+    }
+
     /**
      * Metodo que se encarga de delegar al paciente p el juego de prioridad de la
      * sala respecto al paciente que invoca al metodo. <br>

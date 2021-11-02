@@ -23,6 +23,9 @@ public class MedicoClinico extends MedicoBase {
         setHonorario();
     }
 
+    public MedicoClinico() {
+    }
+
     @Override
     public void setHonorario() {
         this.Honorario *= 1.05;

@@ -30,6 +30,7 @@ public class Clinica {
 	private Set<Paciente> pacientes = new TreeSet<>();
 	private PriorityQueue<Paciente> listaEspera;
 	private ArrayList<Paciente> pacientesEnAtencion;
+	private ArrayList<Factura> facturas;
 
 	public Set<Medico> getMedicos() {
 		return medicos;
@@ -55,6 +56,7 @@ public class Clinica {
 		this.ciudad = ciudad;
 		listaEspera = new PriorityQueue();
 		pacientesEnAtencion = new ArrayList<>();
+		facturas = new ArrayList<>();
 	}
 
 	private Clinica() {
@@ -303,7 +305,7 @@ public class Clinica {
 		
 
 		Factura facturaNueva = new Factura(paciente, fecha);
-
+		this.facturas.add(facturaNueva);
 		facturaNueva.ImprimeFactura();
 		// Por cada medico en el paciente
 		Medico it2;
@@ -324,6 +326,29 @@ public class Clinica {
 		try {
 			persistencia.abrirOutput("pacientes.xml");
 			persistencia.escribir(this.pacientes);
+			persistencia.cerrarOutput();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void persistenciaMedicosOut(){
+		IPersistencia persistencia = new PersistenciaXML();
+
+		try {
+			persistencia.abrirOutput("medicos.xml");
+			persistencia.escribir(this.medicos);
+			persistencia.cerrarOutput();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void persistenciaFacturasOut(){
+		IPersistencia persistencia = new PersistenciaXML();
+
+		try {
+			persistencia.abrirOutput("facturas.xml");
+			persistencia.escribir(this.facturas);
 			persistencia.cerrarOutput();
 		} catch (IOException e) {
 			e.printStackTrace();

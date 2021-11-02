@@ -22,4 +22,6 @@ public abstract class MedicoBase extends Medico {
         super(dni, domicilio, ciudad, telefono, nombre, numero, honorarioBasico);
     }
 
+    public MedicoBase() {
+    }
 }

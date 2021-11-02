@@ -21,6 +21,9 @@ public class Mayor extends Paciente {
         super(dni, domicilio, ciudad, telefono, nombre, rangoEtario);
     }
 
+    public Mayor() {
+    }
+
     /**
      * Metodo que se encarga de delegar al paciente p el juego de prioridad de la
      * sala respecto al paciente que invoca al metodo. <br>
