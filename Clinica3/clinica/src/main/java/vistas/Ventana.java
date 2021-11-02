@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements IVista {
 
     private JPanel contentPane;
     private JList listPacientes;
@@ -103,7 +103,7 @@ public class Ventana extends JFrame {
         this.setVisible(true);
     }
 
-
+    @Override
     public void addActionListener(ActionListener controller) {
 
         this.btnDarAlta.addActionListener(controller);
