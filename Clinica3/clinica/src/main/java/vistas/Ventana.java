@@ -109,19 +109,14 @@ public class Ventana extends JFrame implements IVista {
     public void actualizaListaPacientes(Set<Paciente> pacientes) {
         Iterator<Paciente> it = pacientes.iterator();
         Paciente paciente;
-
+        this.modeloPaciente =  new DefaultListModel<>();
         while (it.hasNext()) {
             paciente = it.next();
-            if (!this.modeloPaciente.contains(paciente)) {
-                this.modeloPaciente.addElement(paciente);
-                this.setTextField();
-            } else {
-                this.modeloPaciente.remove(this.modeloPaciente.indexOf(paciente));
-//                if (this.modeloPaciente.isEmpty())
-////                    this.btnComenzar.setEnabled(false);
-            }
+            this.modeloPaciente.addElement(paciente);
             listPacientes.clearSelection();
         }
+        this.listPacientes.setModel(this.modeloPaciente);
+
     }
 
     private void setTextField(){
@@ -141,6 +136,7 @@ public class Ventana extends JFrame implements IVista {
                 this.modeloMedico.addElement(medico);
                 this.setTextField();
             } else {
+
                 this.modeloMedico.remove(this.modeloMedico.indexOf(medico));
 //                if (this.modeloPaciente.isEmpty())
 ////                    this.btnComenzar.setEnabled(false);
