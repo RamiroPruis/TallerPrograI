@@ -9,10 +9,13 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.Set;
 import java.awt.Font;
@@ -33,8 +36,9 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     private JPanel panelFacturacion;
     private JTabbedPane tabbedPane;
     private JPanel panelConsultaFactura;
-    private JTextField textField;
-    private JTextField textField_1;
+    private JButton btnConsultar;
+    private JFormattedTextField FechaFinal;
+    private JFormattedTextField FechaInicial;
 
 
 
@@ -104,16 +108,6 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
                                                                                 tabbedPane.addTab("ConsultaFactura", null, panelConsultaFactura, null);
                                                                                 panelConsultaFactura.setLayout(null);
                                                                                 
-                                                                                textField = new JTextField();
-                                                                                textField.setBounds(308, 10, 96, 19);
-                                                                                panelConsultaFactura.add(textField);
-                                                                                textField.setColumns(10);
-                                                                                
-                                                                                textField_1 = new JTextField();
-                                                                                textField_1.setColumns(10);
-                                                                                textField_1.setBounds(308, 39, 96, 19);
-                                                                                panelConsultaFactura.add(textField_1);
-                                                                                
                                                                                 JLabel lblNewLabel = new JLabel("Fecha Inicial");
                                                                                 lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
                                                                                 lblNewLabel.setBounds(198, 10, 88, 16);
@@ -124,13 +118,30 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
                                                                                 lblFechaFinal.setBounds(198, 42, 88, 16);
                                                                                 panelConsultaFactura.add(lblFechaFinal);
                                                                                 
-                                                                                JButton btnConsultar = new JButton("Consultar");
-                                                                                btnConsultar.setBounds(437, 22, 85, 21);
+                                                                                this.btnConsultar = new JButton("Consultar");
+                                                                                btnConsultar.setBounds(437, 22, 114, 26);
+                                                                                this.btnConsultar.setActionCommand("Consultar");
                                                                                 panelConsultaFactura.add(btnConsultar);
                                                                                 
                                                                                 JTextPane textPane = new JTextPane();
                                                                                 textPane.setBounds(25, 68, 658, 311);
                                                                                 panelConsultaFactura.add(textPane);
+                                                                                
+                                                                                MaskFormatter mascara = null;
+                                                                                try {
+																					mascara = new MaskFormatter("##/##/####");
+																				} catch (ParseException e) {
+																					// TODO Auto-generated catch block
+																					e.printStackTrace();
+																				}
+                                                                                this.FechaInicial = new JFormattedTextField(mascara);
+                                                                                FechaInicial.setBounds(296, 10, 101, 19);
+                                                                                panelConsultaFactura.add(FechaInicial);
+                                                                                
+                                                                                
+                                                                                this.FechaFinal = new JFormattedTextField(mascara);                                                                               
+                                                                                FechaFinal.setBounds(296, 42, 101, 19);
+                                                                                panelConsultaFactura.add(FechaFinal);
                                                                 this.diasText.addKeyListener(this);
                         this.listMedicos.addListSelectionListener(this);
                 this.listPacientes.addListSelectionListener(this);
@@ -145,6 +156,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.btnDarAlta.addActionListener(controller);
         this.btnInternacion.addActionListener(controller);
         this.btnConsulta.addActionListener(controller);
+        this.btnConsultar.addActionListener(controller);
     }
 
     @Override

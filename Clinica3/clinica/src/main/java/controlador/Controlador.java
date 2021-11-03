@@ -70,6 +70,9 @@ public class Controlador implements WindowListener, ActionListener {
                JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Seleccione un paciente valido");
             }
         }
+        else if (action.equalsIgnoreCase("Consultar")){
+        	System.out.print("Boton Consultar");
+        }
     }
 
     @Override
