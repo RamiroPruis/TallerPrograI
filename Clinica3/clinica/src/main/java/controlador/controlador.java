@@ -37,6 +37,7 @@ public class controlador implements WindowListener, ActionListener {
             Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
             Medico medicoAct = this.ventanaMovimientos.getMedicoSelected();
 
+
             if (pacienteAct != null && medicoAct != null)
                 this.clinica.agregaConsultaAPaciente(pacienteAct,medicoAct);
             else
