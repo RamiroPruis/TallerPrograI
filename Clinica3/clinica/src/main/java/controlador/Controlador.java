@@ -49,7 +49,7 @@ public class Controlador implements WindowListener, ActionListener {
                 else
                     JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Tiene que seleccionar un medico");
         }
-        else if (action.equalsIgnoreCase("GeneraInternaciones")){
+        else if (action.equalsIgnoreCase("GenerarInternacion")){
             try{
                 int dias = ventanaMovimientos.getCantidadDias();
                 Clinica.getInstance().agregaInternacionAPaciente(pacienteAct,new HabCompartida(),dias);
@@ -61,13 +61,11 @@ public class Controlador implements WindowListener, ActionListener {
         }
         else if (action.equalsIgnoreCase("DardeAlta")){
             GregorianCalendar fecha = new GregorianCalendar();
-            Clinica.getInstance().getPacientes().remove(pacienteAct);
-            ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
-
-            System.out.println(pacienteAct.getConsultas());
 
             try {
                 this.clinica.imprimeFacturaDePaciente(pacienteAct,fecha);
+                Clinica.getInstance().getPacientes().remove(pacienteAct);
+                ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
             } catch (PacienteInvalidoException ex) {
                JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Seleccione un paciente valido");
             }
