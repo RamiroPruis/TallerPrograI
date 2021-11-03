@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Iterator;
 import java.util.Set;
+import java.awt.Font;
 
 public class Ventana extends JFrame implements IVista, ListSelectionListener, ActionListener, KeyListener {
     private JPanel contentPane;
@@ -29,6 +30,11 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     private JButton btnDarAlta;
     private DefaultListModel<Paciente> modeloPaciente = new DefaultListModel<>();
     private DefaultListModel<Medico> modeloMedico = new DefaultListModel<>();
+    private JPanel panelFacturacion;
+    private JTabbedPane tabbedPane;
+    private JPanel panelConsultaFactura;
+    private JTextField textField;
+    private JTextField textField_1;
 
 
 
@@ -38,57 +44,96 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.contentPane = new JPanel();
         this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(this.contentPane);
-        this.contentPane.setLayout(null);
-
-        this.listPacientes = new JList<Paciente>();
-        this.listPacientes.setModel(this.modeloPaciente);
-        this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listPacientes.addListSelectionListener(this);
-        this.listPacientes.setBounds(10, 50, 193, 337);
-        this.contentPane.add(this.listPacientes);
-
-        this.listMedicos = new JList<Medico>();
-        this.listMedicos.setModel(this.modeloMedico);
-        this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listMedicos.addListSelectionListener(this);
-        this.listMedicos.setBounds(232, 47, 193, 337);
-        this.contentPane.add(this.listMedicos);
-
-        this.lblPacientes = new JLabel("Lista de Pacientes");
-        this.lblPacientes.setBounds(29, 11, 139, 27);
-        this.contentPane.add(this.lblPacientes);
-
-        this.lblMedicos = new JLabel("Lista de Medicos");
-        this.lblMedicos.setBounds(242, 11, 139, 27);
-        this.contentPane.add(this.lblMedicos);
-
-        this.btnConsulta = new JButton("Generar Consulta");
-        this.btnConsulta.setActionCommand("GenerarConsulta");
-        this.btnConsulta.setBounds(483, 51, 145, 23);
-        this.btnConsulta.setEnabled(false);
-        this.contentPane.add(this.btnConsulta);
-
-        this.btnInternacion = new JButton("Generar Internacion");
-        this.btnInternacion.setActionCommand("GenerarInternacion");
-        this.btnInternacion.setBounds(483, 194, 139, 23);
-        this.btnInternacion.setEnabled(false);
-        this.contentPane.add(this.btnInternacion);
-
-        this.diasText = new JTextField();
-        this.diasText.setColumns(10);
-        this.diasText.setBounds(507, 163, 96, 20);
-        this.diasText.addKeyListener(this);
-        this.contentPane.add(this.diasText);
-
-        this.lblCantDias = new JLabel("Cantidad de dias");
-        this.lblCantDias.setBounds(507, 138, 102, 14);
-        this.contentPane.add(this.lblCantDias);
-
-        this.btnDarAlta = new JButton("Dar de alta");
-        this.btnDarAlta.setActionCommand("DardeAlta");
-        this.btnDarAlta.setBounds(483, 294, 139, 23);
-        this.contentPane.add(this.btnDarAlta);
-        this.btnDarAlta.setEnabled(false);
+        contentPane.setLayout(new BorderLayout(0, 0));
+        
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        contentPane.add(tabbedPane);
+        
+        panelFacturacion = new JPanel();
+        tabbedPane.addTab("Facturacion", null, panelFacturacion, null);
+        panelFacturacion.setLayout(null);
+        
+                this.listPacientes = new JList<Paciente>();
+                listPacientes.setBounds(0, 39, 193, 337);
+                panelFacturacion.add(listPacientes);
+                this.listPacientes.setModel(this.modeloPaciente);
+                this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+                
+                        this.listMedicos = new JList<Medico>();
+                        listMedicos.setBounds(222, 36, 193, 337);
+                        panelFacturacion.add(listMedicos);
+                        this.listMedicos.setModel(this.modeloMedico);
+                        this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+                        
+                                this.lblPacientes = new JLabel("Lista de Pacientes");
+                                lblPacientes.setBounds(19, 0, 139, 27);
+                                panelFacturacion.add(lblPacientes);
+                                
+                                        this.lblMedicos = new JLabel("Lista de Medicos");
+                                        lblMedicos.setBounds(232, 0, 139, 27);
+                                        panelFacturacion.add(lblMedicos);
+                                        
+                                                this.btnConsulta = new JButton("Generar Consulta");
+                                                btnConsulta.setBounds(473, 40, 145, 23);
+                                                panelFacturacion.add(btnConsulta);
+                                                this.btnConsulta.setActionCommand("GenerarConsulta");
+                                                this.btnConsulta.setEnabled(false);
+                                                
+                                                        this.btnInternacion = new JButton("Generar Internacion");
+                                                        btnInternacion.setBounds(473, 183, 139, 23);
+                                                        panelFacturacion.add(btnInternacion);
+                                                        this.btnInternacion.setActionCommand("GenerarInternacion");
+                                                        this.btnInternacion.setEnabled(false);
+                                                        
+                                                                this.diasText = new JTextField();
+                                                                diasText.setBounds(497, 152, 96, 20);
+                                                                panelFacturacion.add(diasText);
+                                                                this.diasText.setColumns(10);
+                                                                
+                                                                        this.lblCantDias = new JLabel("Cantidad de dias");
+                                                                        lblCantDias.setBounds(497, 127, 102, 14);
+                                                                        panelFacturacion.add(lblCantDias);
+                                                                        
+                                                                                this.btnDarAlta = new JButton("Dar de alta");
+                                                                                btnDarAlta.setBounds(473, 283, 139, 23);
+                                                                                panelFacturacion.add(btnDarAlta);
+                                                                                this.btnDarAlta.setActionCommand("DardeAlta");
+                                                                                this.btnDarAlta.setEnabled(false);
+                                                                                
+                                                                                panelConsultaFactura = new JPanel();
+                                                                                tabbedPane.addTab("ConsultaFactura", null, panelConsultaFactura, null);
+                                                                                panelConsultaFactura.setLayout(null);
+                                                                                
+                                                                                textField = new JTextField();
+                                                                                textField.setBounds(308, 10, 96, 19);
+                                                                                panelConsultaFactura.add(textField);
+                                                                                textField.setColumns(10);
+                                                                                
+                                                                                textField_1 = new JTextField();
+                                                                                textField_1.setColumns(10);
+                                                                                textField_1.setBounds(308, 39, 96, 19);
+                                                                                panelConsultaFactura.add(textField_1);
+                                                                                
+                                                                                JLabel lblNewLabel = new JLabel("Fecha Inicial");
+                                                                                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+                                                                                lblNewLabel.setBounds(198, 10, 88, 16);
+                                                                                panelConsultaFactura.add(lblNewLabel);
+                                                                                
+                                                                                JLabel lblFechaFinal = new JLabel("Fecha Final");
+                                                                                lblFechaFinal.setFont(new Font("Tahoma", Font.PLAIN, 12));
+                                                                                lblFechaFinal.setBounds(198, 42, 88, 16);
+                                                                                panelConsultaFactura.add(lblFechaFinal);
+                                                                                
+                                                                                JButton btnConsultar = new JButton("Consultar");
+                                                                                btnConsultar.setBounds(437, 22, 85, 21);
+                                                                                panelConsultaFactura.add(btnConsultar);
+                                                                                
+                                                                                JTextPane textPane = new JTextPane();
+                                                                                textPane.setBounds(25, 68, 658, 311);
+                                                                                panelConsultaFactura.add(textPane);
+                                                                this.diasText.addKeyListener(this);
+                        this.listMedicos.addListSelectionListener(this);
+                this.listPacientes.addListSelectionListener(this);
 
         this.setVisible(true);
     }
@@ -205,5 +250,4 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         }
         return dias==-1;
     }
-
 }
