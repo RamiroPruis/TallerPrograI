@@ -138,12 +138,14 @@ public class Factura implements Comparable<Factura> {
 
         float costoTotal = 0;
 
-        var consultas = paciente.getConsultas();
-        var internaciones = paciente.getInternaciones();
+        Hashtable<Medico, Integer> consultas = paciente.getConsultas();
+        Hashtable<Habitacion, Integer>  internaciones = paciente.getInternaciones();
 
         Object[][] datos = new Object[consultas.size() + internaciones.size()][4];
 
         Enumeration<Medico> enumMedicos = consultas.keys();
+        System.out.println(paciente.getNombre());
+
         while (enumMedicos.hasMoreElements()) {
             Medico medActual = enumMedicos.nextElement();
             datos[contadorDatos][0] = medActual.getNombre();
@@ -153,6 +155,7 @@ public class Factura implements Comparable<Factura> {
             costoTotal += medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
 
             contadorDatos++;
+            System.out.println("while1");
         }
 
         Enumeration<Habitacion> enumHabitaciones = internaciones.keys();
@@ -167,6 +170,7 @@ public class Factura implements Comparable<Factura> {
             } catch (DiasInvalidosException e) {
                 e.fillInStackTrace();
             }
+            System.out.println("while2");
 
             contadorDatos++;
         }

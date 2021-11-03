@@ -316,7 +316,7 @@ public class Clinica {
             it2.getReporte().add(new Reporte(facturaNueva.getFecha(), paciente.getNombre(),
                     paciente.getConsultas().get(it2), it2.getHonorario() * paciente.getConsultas().get(it2)));
         }
-        paciente.ReseteaPrestaciones();
+//        paciente.ReseteaPrestaciones();
     }
 
 

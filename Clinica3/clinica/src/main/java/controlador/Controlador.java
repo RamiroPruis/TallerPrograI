@@ -61,8 +61,8 @@ public class Controlador implements WindowListener, ActionListener {
 
             try {
                 this.clinica.agregarFactura(pacienteAct, fecha);
-                Clinica.getInstance().getPacientes().remove(pacienteAct);
-                ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
+//                Clinica.getInstance().getPacientes().remove(pacienteAct);
+//                ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
             } catch (PacienteInvalidoException ex) {
                 JOptionPane.showMessageDialog((Component) ventanaMovimientos, "Seleccione un paciente valido");
             }
@@ -70,7 +70,6 @@ public class Controlador implements WindowListener, ActionListener {
             try {
                 GregorianCalendar[] fechas = ventanaMovimientos.getIntervaloFechas();
                 ArrayList<Factura> facturas = Clinica.getInstance().getFacturasOrdenadas();
-                ArrayList<Factura> intervalo = new ArrayList<Factura>();
                 StringBuilder stringBuilder = new StringBuilder();
                 for (Factura factura : facturas) {
 
