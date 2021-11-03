@@ -21,7 +21,7 @@ public class controlador implements WindowListener, ActionListener {
 
 
     public controlador(IVista ventanaMovimientos) {
-
+        setVentanaMovimientos(ventanaMovimientos);
     }
 
     public void setVentanaMovimientos(IVista ventanaMovimientos) {

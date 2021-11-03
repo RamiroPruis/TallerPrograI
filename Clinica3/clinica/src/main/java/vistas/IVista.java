@@ -3,6 +3,7 @@ package vistas;
 import usuarios.Medico;
 import usuarios.Paciente;
 
+import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
@@ -11,8 +12,9 @@ public interface IVista {
     void addActionListener(ActionListener controlador);
     Paciente getPacienteSelcted();
     Medico getMedicoSelected();
-
     void actualizaListaPacientes(Set<Paciente> pacientes);
     void actualizaListaMedicos(Set<Medico> medicos);
+    void valueChanged(ListSelectionEvent e);
     int getCantidadDias();
+    boolean diasVacio();
 }
