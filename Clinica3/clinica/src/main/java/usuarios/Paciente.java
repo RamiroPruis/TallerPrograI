@@ -75,7 +75,7 @@ public abstract class Paciente extends Usuarios implements Priorizable {
 	public void AgregaInternacion(Habitacion hab, int dias) {
 		if (dias > 0) {
 			if (hab != null) {
-				if (internaciones.contains(hab)) {
+				if (internaciones.containsKey(hab)) {
 					internaciones.put(hab, internaciones.get(hab) + dias);
 				} else {
 					internaciones.put(hab, dias);
@@ -103,7 +103,7 @@ public abstract class Paciente extends Usuarios implements Priorizable {
 	 */
 	public void AgregaConsulta(Medico med) {
 		if (med != null) {
-			if (consultas.contains(med)) {
+			if (consultas.containsKey(med)) {
 				consultas.put(med, consultas.get(med) + 1);
 			} else {
 				consultas.put(med, 1);

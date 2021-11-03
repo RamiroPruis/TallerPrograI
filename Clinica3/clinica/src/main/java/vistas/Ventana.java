@@ -139,6 +139,8 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         Iterator<Medico> it = medicos.iterator();
         Medico medico;
 
+        this.modeloMedico = new DefaultListModel<>();
+
         while (it.hasNext()) {
             medico = it.next();
             if (!this.modeloMedico.contains(medico)) {
@@ -152,10 +154,11 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
             }
             listMedicos.clearSelection();
         }
+        this.listMedicos.setModel(this.modeloMedico);
     }
 
     @Override
-    public int getCantidadDias() {
+    public int getCantidadDias() throws NumberFormatException{
          return Integer.parseInt(this.diasText.getText());
     }
 

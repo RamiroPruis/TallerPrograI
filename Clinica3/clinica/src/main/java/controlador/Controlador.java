@@ -1,7 +1,10 @@
 package controlador;
 
 import clinica.Clinica;
+import exceptions.DiasInvalidosException;
 import exceptions.PacienteInvalidoException;
+import lugares.HabCompartida;
+import lugares.HabPrivada;
 import usuarios.Medico;
 import usuarios.Paciente;
 import vistas.IVista;
@@ -14,13 +17,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.GregorianCalendar;
 
-public class controlador implements WindowListener, ActionListener {
+public class Controlador implements WindowListener, ActionListener {
 
     private IVista ventanaMovimientos;
     private Clinica clinica = Clinica.getInstance();
 
 
-    public controlador(IVista ventanaMovimientos) {
+    public Controlador(IVista ventanaMovimientos) {
         setVentanaMovimientos(ventanaMovimientos);
     }
 
@@ -32,14 +35,14 @@ public class controlador implements WindowListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
+        Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
+        Medico medicoAct = this.ventanaMovimientos.getMedicoSelected();
 
         if (action.equalsIgnoreCase("GenerarConsulta")){
-            Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
-            Medico medicoAct = this.ventanaMovimientos.getMedicoSelected();
 
-
-            if (pacienteAct != null && medicoAct != null)
-                this.clinica.agregaConsultaAPaciente(pacienteAct,medicoAct);
+            if (pacienteAct != null && medicoAct != null) {
+                this.clinica.agregaConsultaAPaciente(pacienteAct, medicoAct);
+            }
             else
                 if (pacienteAct == null)
                     JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Tiene que seleccionar un paciente");
@@ -47,14 +50,21 @@ public class controlador implements WindowListener, ActionListener {
                     JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Tiene que seleccionar un medico");
         }
         else if (action.equalsIgnoreCase("GeneraInternaciones")){
+            try{
+                int dias = ventanaMovimientos.getCantidadDias();
+                Clinica.getInstance().agregaInternacionAPaciente(pacienteAct,new HabCompartida(),dias);
+            }
+            catch (Exception x){
+                JOptionPane.showMessageDialog((Component) ventanaMovimientos,"Seleccione una cantidad de dias valida");
+            }
 
         }
         else if (action.equalsIgnoreCase("DardeAlta")){
-            System.out.println("HOLA");
-            Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
             GregorianCalendar fecha = new GregorianCalendar();
             Clinica.getInstance().getPacientes().remove(pacienteAct);
             ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
+
+            System.out.println(pacienteAct.getConsultas());
 
             try {
                 this.clinica.imprimeFacturaDePaciente(pacienteAct,fecha);

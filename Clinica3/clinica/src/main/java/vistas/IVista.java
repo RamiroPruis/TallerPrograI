@@ -12,9 +12,10 @@ public interface IVista {
     void addActionListener(ActionListener controlador);
     Paciente getPacienteSelcted();
     Medico getMedicoSelected();
+
     void actualizaListaPacientes(Set<Paciente> pacientes);
     void actualizaListaMedicos(Set<Medico> medicos);
+    int getCantidadDias() throws NumberFormatException;
     void valueChanged(ListSelectionEvent e);
-    int getCantidadDias();
     boolean diasVacio();
 }
