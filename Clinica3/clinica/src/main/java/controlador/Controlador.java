@@ -60,7 +60,7 @@ public class Controlador implements WindowListener, ActionListener {
             GregorianCalendar fecha = new GregorianCalendar();
 
             try {
-                this.clinica.imprimeFacturaDePaciente(pacienteAct, fecha);
+                this.clinica.agregarFactura(pacienteAct, fecha);
                 Clinica.getInstance().getPacientes().remove(pacienteAct);
                 ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
             } catch (PacienteInvalidoException ex) {
@@ -71,15 +71,16 @@ public class Controlador implements WindowListener, ActionListener {
                 GregorianCalendar[] fechas = ventanaMovimientos.getIntervaloFechas();
                 ArrayList<Factura> facturas = Clinica.getInstance().getFacturasOrdenadas();
                 ArrayList<Factura> intervalo = new ArrayList<Factura>();
-                for (Factura factura : facturas){
-                    if (factura.getFecha().compareTo(fechas[0])>=0 &&  factura.getFecha().compareTo(fechas[0])<=0){
-                        intervalo.add(factura);
+                StringBuilder stringBuilder = new StringBuilder();
+                for (Factura factura : facturas) {
+
+                    if (factura.getFecha().compareTo(fechas[0]) >= 0 && factura.getFecha().compareTo(fechas[1]) <= 0) {
+                        stringBuilder.append(factura.ImprimeFactura());
                     }
                 }
-                if (intervalo.size()>0)
-                    ventanaMovimientos.actualizaListaFacturas(intervalo);
-                else
-                    JOptionPane.showMessageDialog((Component) ventanaMovimientos, "No se encontraron facturas en ese intervalo");
+                ventanaMovimientos.actualizaListaFacturas(stringBuilder);
+
+
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

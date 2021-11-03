@@ -13,15 +13,22 @@ import java.util.Set;
 public interface IVista {
 
     void addActionListener(ActionListener controlador);
+
     Paciente getPacienteSelcted();
+
     Medico getMedicoSelected();
 
     void actualizaListaPacientes(Set<Paciente> pacientes);
+
     void actualizaListaMedicos(Set<Medico> medicos);
-    void actualizaListaFacturas(ArrayList<Factura> facturas);
+
+    void actualizaListaFacturas(StringBuilder facturas);
+
     int getCantidadDias() throws NumberFormatException;
+
     GregorianCalendar[] getIntervaloFechas() throws Exception;
 
     void valueChanged(ListSelectionEvent e);
+
     boolean diasVacio();
 }

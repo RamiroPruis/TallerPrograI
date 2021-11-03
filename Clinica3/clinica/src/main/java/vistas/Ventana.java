@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -40,7 +41,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     private JButton btnConsultar;
     private JFormattedTextField FechaFinal;
     private JFormattedTextField FechaInicial;
-    private JTextPane textPane;
+    private JTextArea textPane;
 
     public Ventana() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,7 +124,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.btnConsultar.setActionCommand("Consultar");
         panelConsultaFactura.add(btnConsultar);
 
-        this.textPane = new JTextPane();
+        this.textPane = new JTextArea();
         textPane.setBounds(25, 68, 658, 311);
         panelConsultaFactura.add(textPane);
 
@@ -212,8 +213,8 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     }
 
     @Override
-    public void actualizaListaFacturas(ArrayList<Factura> facturas) {
-        this.textPane.p
+    public void actualizaListaFacturas(StringBuilder facturas) {
+        this.textPane.append(facturas.toString());
     }
 
     @Override
@@ -223,22 +224,21 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
 
     @Override
     public GregorianCalendar[] getIntervaloFechas() throws Exception {
-        GregorianCalendar [] fechas = new GregorianCalendar[2];
-        fechas[0] = new GregorianCalendar();
-        fechas[1] = new GregorianCalendar();
-        String[] fechaInicio = this.FechaInicial.getText().split("/");
-        String[] fechaFinal = this.FechaFinal.getText().split("/");
+        GregorianCalendar[] fechas = new GregorianCalendar[2];
 
-        fechas[0].set(GregorianCalendar.YEAR,Integer.parseInt(fechaInicio[2]));
-        fechas[0].set(GregorianCalendar.MONTH,Integer.parseInt(fechaInicio[1])-1);
-        fechas[0].set(GregorianCalendar.DATE,Integer.parseInt(fechaInicio[0]));
-        fechas[1].set(GregorianCalendar.YEAR,Integer.parseInt(fechaFinal[2]));
-        fechas[1].set(GregorianCalendar.MONTH,Integer.parseInt(fechaFinal[1])-1);
-        fechas[1].set(GregorianCalendar.DATE,Integer.parseInt(fechaFinal[0]));
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = df.parse(FechaInicial.getText());
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        fechas[0] = cal;
+
+        Date date2 = df.parse(FechaFinal.getText());
+        GregorianCalendar cal2 = new GregorianCalendar();
+        cal2.setTime(date2);
+        fechas[1] = cal2;
 
 
-
-        return  fechas;
+        return fechas;
     }
 
     /**
