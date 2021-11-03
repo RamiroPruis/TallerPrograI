@@ -50,8 +50,11 @@ public class controlador implements WindowListener, ActionListener {
 
         }
         else if (action.equalsIgnoreCase("DardeAlta")){
+            System.out.println("HOLA");
             Paciente pacienteAct = this.ventanaMovimientos.getPacienteSelcted();
             GregorianCalendar fecha = new GregorianCalendar();
+            Clinica.getInstance().getPacientes().remove(pacienteAct);
+            ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
 
             try {
                 this.clinica.imprimeFacturaDePaciente(pacienteAct,fecha);

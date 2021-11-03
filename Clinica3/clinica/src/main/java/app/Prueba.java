@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import clinica.Clinica;
+import controlador.controlador;
 import exceptions.FechaInvalidaException;
 import exceptions.PacienteInvalidoException;
 import lugares.HabPrivada;
@@ -95,6 +96,7 @@ public class Prueba {
 
 
                 Ventana ventana = new Ventana();
+                controlador controlador = new controlador(ventana);
                 ventana.actualizaListaMedicos(Clinica.getInstance().getMedicos());
                 ventana.actualizaListaPacientes(Clinica.getInstance().getPacientes());
 
