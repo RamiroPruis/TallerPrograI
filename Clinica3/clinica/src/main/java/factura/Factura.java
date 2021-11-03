@@ -10,12 +10,14 @@ import lugares.Habitacion;
 import usuarios.Medico;
 import usuarios.Paciente;
 
+import javax.swing.*;
+
 /**
  * Esta clase brinda informacion sobre el transcurso del paciente en la clinica
  * 
  */
 
-public class Factura {
+public class Factura implements Comparable<Factura> {
 	private static int numFacturaMax = 0;
 	private int numFactura;
 	private Paciente paciente;
@@ -123,7 +125,16 @@ public class Factura {
 
 	}
 
+
+
+
 	public GregorianCalendar getFecha() {
 		return fecha;
+	}
+
+	@Override
+	public int compareTo(Factura o) {
+		return this.fecha.compareTo(o.fecha);
+
 	}
 }

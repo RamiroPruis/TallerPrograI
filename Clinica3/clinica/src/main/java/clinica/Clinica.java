@@ -356,5 +356,10 @@ public class Clinica {
 	}
 
 
+	public ArrayList<Factura> getFacturasOrdenadas(){
+		Collections.sort(this.facturas);
+		return this.facturas;
+	}
+
 
 }
