@@ -42,18 +42,16 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
 
         this.listPacientes = new JList<Paciente>();
         this.listPacientes.setModel(this.modeloPaciente);
-        this.listPacientes.addListSelectionListener(this);
         this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listPacientes.setBounds(232, 47, 193, 337);
-        this.listPacientes.setEnabled(true);
+        this.listPacientes.addListSelectionListener(this);
+        this.listPacientes.setBounds(10, 50, 193, 337);
         this.contentPane.add(this.listPacientes);
 
         this.listMedicos = new JList<Medico>();
         this.listMedicos.setModel(this.modeloMedico);
-        this.listMedicos.addListSelectionListener(this);
         this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listMedicos.setBounds(10, 50, 193, 337);
-        this.listMedicos.setEnabled(true);
+        this.listMedicos.addListSelectionListener(this);
+        this.listMedicos.setBounds(232, 47, 193, 337);
         this.contentPane.add(this.listMedicos);
 
         this.lblPacientes = new JLabel("Lista de Pacientes");
@@ -89,11 +87,10 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.btnDarAlta = new JButton("Dar de alta");
         this.btnDarAlta.setActionCommand("DardeAlta");
         this.btnDarAlta.setBounds(483, 294, 139, 23);
-        this.btnDarAlta.setEnabled(false);
         this.contentPane.add(this.btnDarAlta);
+        this.btnDarAlta.setEnabled(false);
 
         this.setVisible(true);
-
     }
 
 
@@ -170,8 +167,8 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     public void valueChanged(ListSelectionEvent e) {
         this.btnConsulta.setEnabled(!this.listPacientes.isSelectionEmpty() && !this.listMedicos.isSelectionEmpty());
         this.btnDarAlta.setEnabled(!this.listPacientes.isSelectionEmpty());
-        if (!diasVacio()){
-            this.btnInternacion.setEnabled(!this.listPacientes.isSelectionEmpty());
+        if (!this.diasVacio()){
+            this.btnInternacion.setEnabled(!this.listPacientes.isSelectionEmpty() && !this.listMedicos.isSelectionEmpty());
         }
     }
 
@@ -187,13 +184,14 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
 
     @Override
     public void keyPressed(KeyEvent e) {
-
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (!this.diasVacio())
-            this.btnInternacion.setEnabled(!this.listPacientes.isSelectionEmpty());
+            this.btnInternacion.setEnabled(!this.listPacientes.isSelectionEmpty() && !this.listMedicos.isSelectionEmpty());
+        else
+            this.btnInternacion.setEnabled(false);
     }
 
     public boolean diasVacio(){
@@ -201,9 +199,8 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         try{
             dias = Integer.parseInt(this.diasText.getText());
         } catch (NumberFormatException e){
-
         }
-
-        return dias<1;
+        return dias==-1;
     }
+
 }
