@@ -132,7 +132,8 @@ public class Factura implements Comparable<Factura> {
     public StringBuilder ImprimeFactura() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("\nFactura numero: " + numFactura + "\n");
+        sb.append("\nFactura numero: " + numFactura + "\n" +
+                "Fecha: " + this.fecha.getTime() + '\n');
 
         int contadorDatos = 0;
 

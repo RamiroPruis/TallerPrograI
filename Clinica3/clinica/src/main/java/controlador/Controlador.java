@@ -55,7 +55,7 @@ public class Controlador implements WindowListener, ActionListener {
             } catch (Exception x) {
                 JOptionPane.showMessageDialog((Component) ventanaMovimientos, "Seleccione una cantidad de dias valida");
             }
-
+            this.ventanaMovimientos.setTextField();
         } else if (action.equalsIgnoreCase("DardeAlta")) {
             GregorianCalendar fecha = new GregorianCalendar();
 
@@ -66,6 +66,7 @@ public class Controlador implements WindowListener, ActionListener {
             } catch (PacienteInvalidoException ex) {
                 JOptionPane.showMessageDialog((Component) ventanaMovimientos, "Seleccione un paciente valido");
             }
+            ventanaMovimientos.reiniciaVista();
         } else if (action.equalsIgnoreCase("Consultar")) {
             try {
                 GregorianCalendar[] fechas = ventanaMovimientos.getIntervaloFechas();

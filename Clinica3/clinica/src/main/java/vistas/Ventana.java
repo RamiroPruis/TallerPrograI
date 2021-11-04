@@ -1,6 +1,5 @@
 package vistas;
 
-import factura.Factura;
 import usuarios.*;
 
 import java.awt.BorderLayout;
@@ -151,6 +150,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     }
 
 
+
     @Override
     public void addActionListener(ActionListener controller) {
         this.btnDarAlta.addActionListener(controller);
@@ -184,9 +184,10 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     }
 
 
-    private void setTextField() {
+    public void setTextField() {
         this.diasText.setText("");
     }
+
 
 
     @Override
@@ -284,5 +285,13 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         } catch (NumberFormatException e) {
         }
         return dias == -1;
+    }
+
+    public void reiniciaVista(){
+        this.btnInternacion.setEnabled(false);
+        this.btnConsulta.setEnabled(false);
+        this.btnDarAlta.setEnabled(false);
+        this.listMedicos.clearSelection();
+        this.listPacientes.clearSelection();
     }
 }

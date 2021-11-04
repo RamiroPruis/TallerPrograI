@@ -1,6 +1,5 @@
 package vistas;
 
-import factura.Factura;
 import usuarios.Medico;
 import usuarios.Paciente;
 
@@ -13,13 +12,10 @@ import java.util.Set;
 public interface IVista {
 
     void addActionListener(ActionListener controlador);
-
     Paciente getPacienteSelcted();
-
     Medico getMedicoSelected();
 
     void actualizaListaPacientes(Set<Paciente> pacientes);
-
     void actualizaListaMedicos(Set<Medico> medicos);
 
     void actualizaListaFacturas(StringBuilder facturas);
@@ -30,5 +26,9 @@ public interface IVista {
 
     void valueChanged(ListSelectionEvent e);
 
+    void setTextField();
+
     boolean diasVacio();
+
+    void reiniciaVista();
 }
