@@ -69,9 +69,11 @@ public class Controlador implements ActionListener {
             ventanaMovimientos.reiniciaVista();
         } else if (action.equalsIgnoreCase("Consultar")) {
             try {
+
                 GregorianCalendar[] fechas = ventanaMovimientos.getIntervaloFechas();
                 ArrayList<Factura> facturas = Clinica.getInstance().getFacturasOrdenadas();
                 StringBuilder stringBuilder = new StringBuilder();
+                this.ventanaMovimientos.reiniciaFacturas();
                 for (Factura factura : facturas) {
 
                     if (factura.getFecha().compareTo(fechas[0]) >= 0 && factura.getFecha().compareTo(fechas[1]) <= 0) {

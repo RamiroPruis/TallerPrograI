@@ -31,4 +31,6 @@ public interface IVista {
     boolean diasVacio();
 
     void reiniciaVista();
+
+    void reiniciaFacturas();
 }

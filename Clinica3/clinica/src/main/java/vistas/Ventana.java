@@ -302,6 +302,11 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     }
 
     @Override
+    public void reiniciaFacturas() {
+        this.textPane.setText("");
+    }
+
+    @Override
     public void windowOpened(WindowEvent e) {
 
     }
