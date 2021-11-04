@@ -242,6 +242,9 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         Date date2 = df.parse(FechaFinal.getText());
         GregorianCalendar cal2 = new GregorianCalendar();
         cal2.setTime(date2);
+        cal2.add(GregorianCalendar.HOUR,23);
+        cal2.add(GregorianCalendar.MINUTE,59);
+        cal2.add(GregorianCalendar.SECOND,59);
         fechas[1] = cal2;
 
 
