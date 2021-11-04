@@ -28,7 +28,6 @@ public class Factura implements Comparable<Factura> {
         numFacturaMax++;
         numFactura = numFacturaMax;
         this.fecha = fecha;
-
         if (paciente != null)
             this.paciente = paciente;
         else
