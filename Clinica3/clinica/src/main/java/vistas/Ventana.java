@@ -40,6 +40,8 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     private JFormattedTextField FechaInicial;
     private JTextArea textPane;
     private Clinica clinica = Clinica.getInstance();
+    private JScrollPane scrollPaneFactura ;
+    private JPanel contentPanel;
 
     public Ventana() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,9 +126,12 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.btnConsultar.setActionCommand("Consultar");
         panelConsultaFactura.add(btnConsultar);
 
+
         this.textPane = new JTextArea();
-        textPane.setBounds(25, 68, 658, 311);
-        panelConsultaFactura.add(textPane);
+        this.scrollPaneFactura = new JScrollPane(this.textPane);
+        this.scrollPaneFactura.setBounds(25, 68, 658, 311);
+        this.panelConsultaFactura.add(scrollPaneFactura);
+
 
         MaskFormatter mascara = null;
         try {
