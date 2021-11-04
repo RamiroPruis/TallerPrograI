@@ -1,5 +1,6 @@
 package vistas;
 
+import clinica.Clinica;
 import usuarios.*;
 
 import java.awt.BorderLayout;
@@ -11,17 +12,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.awt.Font;
 
-public class Ventana extends JFrame implements IVista, ListSelectionListener, ActionListener, KeyListener {
+public class Ventana extends JFrame implements IVista, ListSelectionListener, ActionListener, KeyListener, WindowListener {
     private JPanel contentPane;
     private JList<Paciente> listPacientes;
     private JList<Medico> listMedicos;
@@ -41,6 +39,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     private JFormattedTextField FechaFinal;
     private JFormattedTextField FechaInicial;
     private JTextArea textPane;
+    private Clinica clinica = Clinica.getInstance();
 
     public Ventana() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +51,8 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
 
         tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         contentPane.add(tabbedPane);
+
+        this.addWindowListener(this);
 
         panelFacturacion = new JPanel();
         tabbedPane.addTab("Facturacion", null, panelFacturacion, null);
@@ -293,5 +294,43 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.btnDarAlta.setEnabled(false);
         this.listMedicos.clearSelection();
         this.listPacientes.clearSelection();
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.out.println("Guardando datos");
+        this.clinica.persistenciaFacturasOut();
+        this.clinica.persistenciaMedicosOut();
+        this.clinica.persistenciaPacientesOut();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

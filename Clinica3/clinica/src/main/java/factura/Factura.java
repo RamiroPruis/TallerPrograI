@@ -145,7 +145,6 @@ public class Factura implements Comparable<Factura> {
         Object[][] datos = new Object[consultas.size() + internaciones.size()][4];
 
         Enumeration<Medico> enumMedicos = consultas.keys();
-        System.out.println(paciente.getNombre());
 
         while (enumMedicos.hasMoreElements()) {
             Medico medActual = enumMedicos.nextElement();
@@ -156,7 +155,6 @@ public class Factura implements Comparable<Factura> {
             costoTotal += medActual.getHonorario() * valorAgregadoConsulta * consultas.get(medActual);
 
             contadorDatos++;
-            System.out.println("while1");
         }
 
         Enumeration<Habitacion> enumHabitaciones = internaciones.keys();
@@ -171,7 +169,6 @@ public class Factura implements Comparable<Factura> {
             } catch (DiasInvalidosException e) {
                 e.fillInStackTrace();
             }
-            System.out.println("while2");
 
             contadorDatos++;
         }

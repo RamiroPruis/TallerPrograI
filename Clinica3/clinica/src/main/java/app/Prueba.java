@@ -40,58 +40,58 @@ public class Prueba {
                 "Richard Palomo", "Joven");
         // Ingreso del paciente a la clinica
 
-        System.out.println("PACIENTES");
-        for (Paciente paciente : clinica.getPacientes()) {
-            System.out.println(paciente.getNombre());
-        }
+//        System.out.println("PACIENTES");
+//        for (Paciente paciente : clinica.getPacientes()) {
+//            System.out.println(paciente.getNombre());
+//        }
+//
+//        System.out.println("MEDICOS");
+//        for (Medico medico : clinica.getMedicos()) {
+//            System.out.format("%20s $%8.2f%n", medico.getNombre(), medico.getHonorario());
+//        }
+//
+//
+//        Set<Paciente> pacientes = clinica.getPacientes();
+//        Iterator<Paciente> pacientesIterator = pacientes.iterator();
+//        Paciente pacientePrueba = pacientesIterator.next();
+//
+//        Set<Medico> medicos = clinica.getMedicos();
+//        Iterator<Medico> medicosIterator = medicos.iterator();
+//        Medico medicoPrueba1 = medicosIterator.next();
+//        Medico medicoPrueba2 = medicosIterator.next();
+//
+//        Habitacion habPrueba = new HabPrivada();
+//
+//
+//        clinica.agregaConsultaAPaciente(pacientePrueba, medicoPrueba1);
+//        clinica.agregaConsultaAPaciente(pacientePrueba, medicoPrueba2);
+//
+//
+//        try {
+//            clinica.agregaInternacionAPaciente(pacientePrueba, habPrueba, 5);
+//        } catch (Exception e1) {
+//            // TODO Auto-generated catch block
+//            e1.printStackTrace();
+//        }
+//
+//        try {
+//            clinica.agregarFactura(pacientePrueba, new GregorianCalendar(2021, 5, 14));
+//        } catch (PacienteInvalidoException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("********************************");
+//
+//        try {
+//            clinica.buscaMedico(1408).muestraReporte(new GregorianCalendar(2021, 5, 13),
+//                    new GregorianCalendar(2021, 5, 16));
+//        } catch (FechaInvalidaException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 
-        System.out.println("MEDICOS");
-        for (Medico medico : clinica.getMedicos()) {
-            System.out.format("%20s $%8.2f%n", medico.getNombre(), medico.getHonorario());
-        }
-
-
-        Set<Paciente> pacientes = clinica.getPacientes();
-        Iterator<Paciente> pacientesIterator = pacientes.iterator();
-        Paciente pacientePrueba = pacientesIterator.next();
-
-        Set<Medico> medicos = clinica.getMedicos();
-        Iterator<Medico> medicosIterator = medicos.iterator();
-        Medico medicoPrueba1 = medicosIterator.next();
-        Medico medicoPrueba2 = medicosIterator.next();
-
-        Habitacion habPrueba = new HabPrivada();
-
-
-        clinica.agregaConsultaAPaciente(pacientePrueba, medicoPrueba1);
-        clinica.agregaConsultaAPaciente(pacientePrueba, medicoPrueba2);
-
-
-        try {
-            clinica.agregaInternacionAPaciente(pacientePrueba, habPrueba, 5);
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-
-        try {
-            clinica.agregarFactura(pacientePrueba, new GregorianCalendar(2021, 5, 14));
-        } catch (PacienteInvalidoException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        System.out.println("********************************");
-
-        try {
-            clinica.buscaMedico(1408).muestraReporte(new GregorianCalendar(2021, 5, 13),
-                    new GregorianCalendar(2021, 5, 16));
-        } catch (FechaInvalidaException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        clinica.persistenciaFacturasOut();
+        clinica.persistenciaFacturasIn();
 
 
         Ventana ventana = new Ventana();

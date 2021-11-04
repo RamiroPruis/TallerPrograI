@@ -19,7 +19,7 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Controlador implements WindowListener, ActionListener {
+public class Controlador implements ActionListener {
 
     private IVista ventanaMovimientos;
     private Clinica clinica = Clinica.getInstance();
@@ -87,40 +87,5 @@ public class Controlador implements WindowListener, ActionListener {
         }
     }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
 
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-        this.clinica.persistenciaFacturasOut();
-        this.clinica.persistenciaMedicosOut();
-        this.clinica.persistenciaPacientesOut();
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
 }

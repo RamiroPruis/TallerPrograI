@@ -356,6 +356,20 @@ public class Clinica {
         }
     }
 
+    public void persistenciaFacturasIn(){
+        IPersistencia persistencia = new PersistenciaXML();
+
+        try {
+            persistencia.abrirInput("facturas.xml");
+            this.facturas = (ArrayList<Factura>) persistencia.leer();
+            persistencia.cerrarInput();
+            Factura.setNumFacturaMax(this.facturas.size());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public ArrayList<Factura> getFacturasOrdenadas() {
         Collections.sort(this.facturas);
