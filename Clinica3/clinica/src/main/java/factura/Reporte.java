@@ -41,7 +41,7 @@ public class Reporte implements Comparable {
 
     /**
      * Retorna la fecha de la facturacion
-     * 
+     *
      * @return GregorianCalendar
      */
     public GregorianCalendar getFecha() {
@@ -50,7 +50,7 @@ public class Reporte implements Comparable {
 
     /**
      * Retorna el nombre del paciente
-     * 
+     *
      * @return String
      */
     public String getNombrePaciente() {
@@ -59,7 +59,7 @@ public class Reporte implements Comparable {
 
     /**
      * Retorna la cantidad de consultas
-     * 
+     *
      * @return int
      */
     public int getCantConsultas() {
@@ -68,7 +68,7 @@ public class Reporte implements Comparable {
 
     /**
      * Retorna el subtotal cobrado por el medico en este paciente
-     * 
+     *
      * @return double
      */
     public double getSubtotal() {
@@ -80,7 +80,7 @@ public class Reporte implements Comparable {
      * Reporte Post: retorna un valor negativo si this es menor que el parametro
      * retorna cero si son iguales retorna positivo si this es mayor que el
      * parametro
-     * 
+     *
      * @param Object o
      * @return int
      */
@@ -92,7 +92,7 @@ public class Reporte implements Comparable {
 
     /**
      * Retorna una cadena que brinda informacion del estado del objeto
-     * 
+     *
      * @return String
      */
     @Override

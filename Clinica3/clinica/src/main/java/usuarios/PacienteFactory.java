@@ -14,7 +14,7 @@ public class PacienteFactory {
      * <b>Pre: </b> Todos los parametros deben existir y ser validos. <br>
      * <b>Post: </b> En caso de haber sido posible, crea la clase Paciente, o lanza
      * una excepcion si es que no pudo. <br>
-     * 
+     *
      * @param dni         String, contiene el DNI del paciente. <br>
      * @param domicilio   String, contiene el Domicilio en nombre y número. <br>
      * @param ciudad      String, representa la ciudad de nacimiento. <br>
@@ -27,7 +27,7 @@ public class PacienteFactory {
      */
 
     public static Paciente getPaciente(String dni, String domicilio, String ciudad, String telefono, String nombre,
-            String rangoEtario) throws NoExisteException {
+                                       String rangoEtario) throws NoExisteException {
         Paciente paciente = null;
         if (rangoEtario.equalsIgnoreCase("Nino"))
             paciente = new Nino(dni, domicilio, ciudad, telefono, nombre, rangoEtario);

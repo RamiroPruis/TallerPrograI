@@ -9,12 +9,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Iterator;
-import java.util.Set;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.awt.Font;
 
 public class Ventana extends JFrame implements IVista, ListSelectionListener, ActionListener, KeyListener {
     private JPanel contentPane;
@@ -29,8 +34,13 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     private JButton btnDarAlta;
     private DefaultListModel<Paciente> modeloPaciente = new DefaultListModel<>();
     private DefaultListModel<Medico> modeloMedico = new DefaultListModel<>();
-
-
+    private JPanel panelFacturacion;
+    private JTabbedPane tabbedPane;
+    private JPanel panelConsultaFactura;
+    private JButton btnConsultar;
+    private JFormattedTextField FechaFinal;
+    private JFormattedTextField FechaInicial;
+    private JTextArea textPane;
 
     public Ventana() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,57 +48,103 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.contentPane = new JPanel();
         this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(this.contentPane);
-        this.contentPane.setLayout(null);
+        contentPane.setLayout(new BorderLayout(0, 0));
+
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        contentPane.add(tabbedPane);
+
+        panelFacturacion = new JPanel();
+        tabbedPane.addTab("Facturacion", null, panelFacturacion, null);
+        panelFacturacion.setLayout(null);
 
         this.listPacientes = new JList<Paciente>();
+        listPacientes.setBounds(0, 39, 193, 337);
+        panelFacturacion.add(listPacientes);
         this.listPacientes.setModel(this.modeloPaciente);
         this.listPacientes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listPacientes.addListSelectionListener(this);
-        this.listPacientes.setBounds(10, 50, 193, 337);
-        this.contentPane.add(this.listPacientes);
 
         this.listMedicos = new JList<Medico>();
+        listMedicos.setBounds(222, 36, 193, 337);
+        panelFacturacion.add(listMedicos);
         this.listMedicos.setModel(this.modeloMedico);
         this.listMedicos.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-        this.listMedicos.addListSelectionListener(this);
-        this.listMedicos.setBounds(232, 47, 193, 337);
-        this.contentPane.add(this.listMedicos);
 
         this.lblPacientes = new JLabel("Lista de Pacientes");
-        this.lblPacientes.setBounds(29, 11, 139, 27);
-        this.contentPane.add(this.lblPacientes);
+        lblPacientes.setBounds(19, 0, 139, 27);
+        panelFacturacion.add(lblPacientes);
 
         this.lblMedicos = new JLabel("Lista de Medicos");
-        this.lblMedicos.setBounds(242, 11, 139, 27);
-        this.contentPane.add(this.lblMedicos);
+        lblMedicos.setBounds(232, 0, 139, 27);
+        panelFacturacion.add(lblMedicos);
 
         this.btnConsulta = new JButton("Generar Consulta");
+        btnConsulta.setBounds(473, 40, 145, 23);
+        panelFacturacion.add(btnConsulta);
         this.btnConsulta.setActionCommand("GenerarConsulta");
-        this.btnConsulta.setBounds(483, 51, 145, 23);
         this.btnConsulta.setEnabled(false);
-        this.contentPane.add(this.btnConsulta);
 
         this.btnInternacion = new JButton("Generar Internacion");
+        btnInternacion.setBounds(473, 183, 139, 23);
+        panelFacturacion.add(btnInternacion);
         this.btnInternacion.setActionCommand("GenerarInternacion");
-        this.btnInternacion.setBounds(483, 194, 139, 23);
         this.btnInternacion.setEnabled(false);
-        this.contentPane.add(this.btnInternacion);
 
         this.diasText = new JTextField();
+        diasText.setBounds(497, 152, 96, 20);
+        panelFacturacion.add(diasText);
         this.diasText.setColumns(10);
-        this.diasText.setBounds(507, 163, 96, 20);
-        this.diasText.addKeyListener(this);
-        this.contentPane.add(this.diasText);
 
         this.lblCantDias = new JLabel("Cantidad de dias");
-        this.lblCantDias.setBounds(507, 138, 102, 14);
-        this.contentPane.add(this.lblCantDias);
+        lblCantDias.setBounds(497, 127, 102, 14);
+        panelFacturacion.add(lblCantDias);
 
         this.btnDarAlta = new JButton("Dar de alta");
+        btnDarAlta.setBounds(473, 283, 139, 23);
+        panelFacturacion.add(btnDarAlta);
         this.btnDarAlta.setActionCommand("DardeAlta");
-        this.btnDarAlta.setBounds(483, 294, 139, 23);
-        this.contentPane.add(this.btnDarAlta);
         this.btnDarAlta.setEnabled(false);
+
+        panelConsultaFactura = new JPanel();
+        tabbedPane.addTab("ConsultaFactura", null, panelConsultaFactura, null);
+        panelConsultaFactura.setLayout(null);
+
+        JLabel lblNewLabel = new JLabel("Fecha Inicial");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        lblNewLabel.setBounds(198, 10, 88, 16);
+        panelConsultaFactura.add(lblNewLabel);
+
+        JLabel lblFechaFinal = new JLabel("Fecha Final");
+        lblFechaFinal.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        lblFechaFinal.setBounds(198, 42, 88, 16);
+        panelConsultaFactura.add(lblFechaFinal);
+
+        this.btnConsultar = new JButton("Consultar");
+        btnConsultar.setBounds(437, 22, 114, 26);
+        this.btnConsultar.setActionCommand("Consultar");
+        panelConsultaFactura.add(btnConsultar);
+
+        this.textPane = new JTextArea();
+        textPane.setBounds(25, 68, 658, 311);
+        panelConsultaFactura.add(textPane);
+
+        MaskFormatter mascara = null;
+        try {
+            mascara = new MaskFormatter("##/##/####");
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.FechaInicial = new JFormattedTextField(mascara);
+        FechaInicial.setBounds(296, 10, 101, 19);
+        panelConsultaFactura.add(FechaInicial);
+
+
+        this.FechaFinal = new JFormattedTextField(mascara);
+        FechaFinal.setBounds(296, 42, 101, 19);
+        panelConsultaFactura.add(FechaFinal);
+        this.diasText.addKeyListener(this);
+        this.listMedicos.addListSelectionListener(this);
+        this.listPacientes.addListSelectionListener(this);
 
         this.setVisible(true);
     }
@@ -100,6 +156,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
         this.btnDarAlta.addActionListener(controller);
         this.btnInternacion.addActionListener(controller);
         this.btnConsulta.addActionListener(controller);
+        this.btnConsultar.addActionListener(controller);
     }
 
     @Override
@@ -116,7 +173,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     public void actualizaListaPacientes(Set<Paciente> pacientes) {
         Iterator<Paciente> it = pacientes.iterator();
         Paciente paciente;
-        this.modeloPaciente =  new DefaultListModel<>();
+        this.modeloPaciente = new DefaultListModel<>();
         while (it.hasNext()) {
             paciente = it.next();
             this.modeloPaciente.addElement(paciente);
@@ -127,8 +184,7 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     }
 
 
-
-    private void setTextField(){
+    public void setTextField() {
         this.diasText.setText("");
     }
 
@@ -158,19 +214,44 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
     }
 
     @Override
-    public int getCantidadDias() throws NumberFormatException{
-         return Integer.parseInt(this.diasText.getText());
+    public void actualizaListaFacturas(StringBuilder facturas) {
+        this.textPane.append(facturas.toString());
+    }
+
+    @Override
+    public int getCantidadDias() throws NumberFormatException {
+        return Integer.parseInt(this.diasText.getText());
+    }
+
+    @Override
+    public GregorianCalendar[] getIntervaloFechas() throws Exception {
+        GregorianCalendar[] fechas = new GregorianCalendar[2];
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = df.parse(FechaInicial.getText());
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        fechas[0] = cal;
+
+        Date date2 = df.parse(FechaFinal.getText());
+        GregorianCalendar cal2 = new GregorianCalendar();
+        cal2.setTime(date2);
+        fechas[1] = cal2;
+
+
+        return fechas;
     }
 
     /**
      * Cuando se selecciona algun objeto de la lista, habilita los botones respectivos.
+     *
      * @param e
      */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         this.btnConsulta.setEnabled(!this.listPacientes.isSelectionEmpty() && !this.listMedicos.isSelectionEmpty());
         this.btnDarAlta.setEnabled(!this.listPacientes.isSelectionEmpty());
-        if (!this.diasVacio()){
+        if (!this.diasVacio()) {
             this.btnInternacion.setEnabled(!this.listPacientes.isSelectionEmpty() && !this.listMedicos.isSelectionEmpty());
         }
     }
@@ -197,13 +278,20 @@ public class Ventana extends JFrame implements IVista, ListSelectionListener, Ac
             this.btnInternacion.setEnabled(false);
     }
 
-    public boolean diasVacio(){
+    public boolean diasVacio() {
         int dias = -1;
-        try{
+        try {
             dias = Integer.parseInt(this.diasText.getText());
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
         }
-        return dias==-1;
+        return dias == -1;
     }
 
+    public void reiniciaVista(){
+        this.btnInternacion.setEnabled(false);
+        this.btnConsulta.setEnabled(false);
+        this.btnDarAlta.setEnabled(false);
+        this.listMedicos.clearSelection();
+        this.listPacientes.clearSelection();
+    }
 }
