@@ -27,31 +27,6 @@
    </object>
   </void>
   <void method="add">
-   <object class="usuarios.Nino">
-    <void property="ciudad">
-     <string>Mar del plata</string>
-    </void>
-    <void property="dni">
-     <string>7561238</string>
-    </void>
-    <void property="domicilio">
-     <string>Colon 1239</string>
-    </void>
-    <void property="nombre">
-     <string>Agustin Adan</string>
-    </void>
-    <void property="numero">
-     <int>2</int>
-    </void>
-    <void property="rangoEtario">
-     <string>Nino</string>
-    </void>
-    <void property="telefono">
-     <string>6873213</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
    <object class="usuarios.Joven">
     <void property="ciudad">
      <string>Mar del plata</string>

@@ -367,7 +367,30 @@ public class Clinica {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    public void persistenciaMedicosIn(){
+        IPersistencia persistencia = new PersistenciaXML();
+
+        try {
+            persistencia.abrirInput("medicos.xml");
+            this.medicos = (Set<Medico>) persistencia.leer();
+            persistencia.cerrarInput();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void persistenciaPacientesIn(){
+        IPersistencia persistencia = new PersistenciaXML();
+
+        try {
+            persistencia.abrirInput("pacientes.xml");
+            this.pacientes = (Set<Paciente>) persistencia.leer();
+            persistencia.cerrarInput();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

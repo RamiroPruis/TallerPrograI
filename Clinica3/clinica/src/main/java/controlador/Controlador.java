@@ -61,8 +61,8 @@ public class Controlador implements ActionListener {
 
             try {
                 this.clinica.agregarFactura(pacienteAct, fecha);
-//                Clinica.getInstance().getPacientes().remove(pacienteAct);
-//                ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
+                Clinica.getInstance().getPacientes().remove(pacienteAct);
+                ventanaMovimientos.actualizaListaPacientes(Clinica.getInstance().getPacientes());
             } catch (PacienteInvalidoException ex) {
                 JOptionPane.showMessageDialog((Component) ventanaMovimientos, "Seleccione un paciente valido");
             }
