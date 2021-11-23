@@ -361,7 +361,6 @@ public class Clinica {
 	public void setMedicos(HashMap<Integer, IMedico> medicos) {
 		this.medicos = medicos;
 	}
-	
 	public int getNroOrden() {
 		return nroOrden;
 	}
