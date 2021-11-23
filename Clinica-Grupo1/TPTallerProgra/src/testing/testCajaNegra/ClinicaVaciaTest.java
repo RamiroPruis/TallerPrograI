@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class ClinicaVaciaTest {
     ClinicaVaciaEscenario clinicaVaciaEscenario;
-    ClinicaCargadaEscenario clinicaCargadaEscenario;
+
     @Before
     public void setUp() throws Exception {
        clinicaVaciaEscenario= new ClinicaVaciaEscenario();
@@ -48,7 +48,7 @@ public class ClinicaVaciaTest {
     public void derivaPacienteJovenTest () {
         Clinica clinicaActual = clinicaVaciaEscenario.getClinica();
         try {
-            Paciente pacienteMayor = PacienteFactory.getPaciente("123456","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","Mayor");
+            clinicaActual.ingresoPaciente(PacienteFactory.getPaciente("123456","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","Mayor"));
             Paciente pacienteJoven = PacienteFactory.getPaciente("22345698","Ramiro","Pruis","Mar del Plata","2235982821","Jara 980", "Joven");
             SalaDeEspera sala = clinicaActual.getSalaEspera();
             clinicaActual.derivarPaciente(pacienteJoven);
@@ -76,18 +76,6 @@ public class ClinicaVaciaTest {
         }
     }
 
-    @Test
-    public void egreso() {
-        Clinica clinica = clinicaCargadaEscenario.getClinica();
-
-        try {
-            Paciente paciente = PacienteFactory.getPaciente("123456","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","Mayor");
-            clinica.egreso(paciente);
-            assertFalse("El paciente no deberia estar en la lista de atencion ",clinica.getListaAtencion().contains(paciente));
-        } catch (NoExisteRangoEtarioException e) {
-            fail("El paciente deberia crearse correctamente");
-        }
-    }
 
     @Test
     public void agregarMedico() {
