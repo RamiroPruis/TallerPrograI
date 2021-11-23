@@ -28,8 +28,13 @@ public class Clinica {
 	private int nroFactura = 0;
 	//Atributos
 	private static Clinica instance = null;  // aplico patron singleton
-     
-    private String nombre;
+
+	//METODO EXCLUSIVO PARA RESETEAR LA CLINICA
+	public static void setInstance(Clinica instance) {
+		Clinica.instance = instance;
+	}
+
+	private String nombre;
     private String direccion;
     /**
      * @aggregation composite
