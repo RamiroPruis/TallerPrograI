@@ -14,17 +14,20 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-public class ClinicaTest {
+public class ClinicaVaciaTest {
     ClinicaVaciaEscenario clinicaVaciaEscenario;
     ClinicaCargadaEscenario clinicaCargadaEscenario;
     @Before
     public void setUp() throws Exception {
        clinicaVaciaEscenario= new ClinicaVaciaEscenario();
-       clinicaCargadaEscenario = new ClinicaCargadaEscenario();
     }
+
+    //VER COMO ANDA CUANDO TESTEAMOS TODY JUNTO
+
 
     @After
     public void tearDown() throws Exception {
+//        Clinica.setInstance(null);
     }
 
 
@@ -42,13 +45,13 @@ public class ClinicaTest {
     }
 
     @Test
-    public void MayorEnSalaDeEsperaTest () {
-        Clinica clinicaAct = clinicaVaciaEscenario.getClinica();
+    public void derivaPacienteJovenTest () {
+        Clinica clinicaActual = clinicaVaciaEscenario.getClinica();
         try {
             Paciente pacienteMayor = PacienteFactory.getPaciente("123456","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","Mayor");
             Paciente pacienteJoven = PacienteFactory.getPaciente("22345698","Ramiro","Pruis","Mar del Plata","2235982821","Jara 980", "Joven");
-            clinicaAct.derivarPaciente(pacienteJoven);
-            SalaDeEspera sala = clinicaAct.getSalaEspera();
+            SalaDeEspera sala = clinicaActual.getSalaEspera();
+            clinicaActual.derivarPaciente(pacienteJoven);
             assertTrue("El paciente en la sala de espera deberia ser el Joven",sala.getPaciente().equals(pacienteJoven));
         } catch (NoExisteRangoEtarioException e) {
             e.printStackTrace();
