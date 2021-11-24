@@ -1,8 +1,15 @@
 package testing.testCajaNegra;
 
+import excepciones.NoExisteContratacionException;
+import excepciones.NoExisteEspecialidadException;
+import excepciones.NoExistePosgradoException;
 import excepciones.NoExisteRangoEtarioException;
+import infraestructura.Habitacion;
+import infraestructura.HabitacionPrivada;
 import infraestructura.SalaDeEspera;
 import modelo.Clinica;
+import modelo.IMedico;
+import modelo.MedicoFactory;
 import modelo.PacienteFactory;
 
 
@@ -27,7 +34,7 @@ public class ClinicaVaciaTest {
 
     @After
     public void tearDown() throws Exception {
-//        Clinica.setInstance(null);
+        Clinica.setInstance(null);
     }
 
 
@@ -79,23 +86,40 @@ public class ClinicaVaciaTest {
 
     @Test
     public void agregarMedico() {
+        Clinica clinica = clinicaVaciaEscenario.getClinica();
+
+        try {
+            IMedico medico = MedicoFactory.getMedico("123145","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","A1432","Cirujia","Permanente","Magister");
+            clinica.agregarMedico(medico);
+            assertEquals(medico,clinica.buscaMedico(Integer.parseInt(medico.getMatricula())));
+        } catch (NoExisteEspecialidadException e) {
+            fail("No deberia lanzar la excepcion, la especialidad es valida");
+        } catch (NoExisteContratacionException e) {
+            fail("No deberia lanzar la excepcion, la contratacion es valida");
+        } catch (NoExistePosgradoException e) {
+            fail("No deberia lanzar la excepcion, el posgrado es valido");
+        }
+
+
     }
 
     @Test
     public void asignarHabitacion() {
+        Clinica clinica = clinicaVaciaEscenario.getClinica();
+        Habitacion habitacion = new HabitacionPrivada(2,100);
+
+
     }
 
-    @Test
-    public void derivarMedico() {
-    }
+
 
     @Test
     public void derivarHabitacion() {
     }
 
-    @Test
-    public void buscaMedico() {
-    }
+
+
+
 
     @Test
     public void buscaHabitacion() {

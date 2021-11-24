@@ -1,7 +1,12 @@
 package testing.testCajaNegra;
 
+import excepciones.NoExisteContratacionException;
+import excepciones.NoExisteEspecialidadException;
+import excepciones.NoExistePosgradoException;
 import excepciones.NoExisteRangoEtarioException;
 import modelo.Clinica;
+import modelo.IMedico;
+import modelo.MedicoFactory;
 import modelo.PacienteFactory;
 import org.junit.*;
 import personas.Paciente;
@@ -19,9 +24,26 @@ public class ClinicaCargadaTest {
 
     @After
     public void tearDown() throws Exception {
-
+        Clinica.setInstance(null);
     }
 
+
+    @Test
+    public void buscaMedico() {
+        Clinica clinica = clinicaCargadaEscenario.getClinica();
+
+        try {
+            IMedico medico = MedicoFactory.getMedico("1234","Adolf","Spinelli","Mar del Plata","231412413","Lopez 1234","A245","Cirujia","Permanente","Magister");
+            int matricula = Integer.parseInt(medico.getMatricula());
+
+            clinica.agregarMedico(medico);
+
+            assertEquals(medico,clinica.buscaMedico(matricula));
+
+        } catch (NoExisteEspecialidadException | NoExisteContratacionException | NoExistePosgradoException e) {
+            fail("Deberia crear el medico correctamente");
+        }
+    }
 
     @Test
     public void egreso() {
@@ -35,5 +57,6 @@ public class ClinicaCargadaTest {
             fail("El paciente deberia crearse correctamente");
         }
     }
+
 
 }
