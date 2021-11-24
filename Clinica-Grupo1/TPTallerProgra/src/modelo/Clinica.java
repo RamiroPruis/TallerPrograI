@@ -1,12 +1,6 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.TreeSet;
+import java.util.*;
 
 import excepciones.HabitacionOcupadaException;
 import personas.Paciente;
@@ -313,6 +307,56 @@ public class Clinica {
 		return aux;
 	}
 
+	/**
+	 *PRE: numeroDeFactura y fechaDeSolicitud deben ser distintos de null
+	 *        El formato de la fecha ya esta validado
+	 *        Numero de factura es > 0
+	 *
+	 *POST: El metodo retorna un importe adicional a la factura emitida, dependiendo del total facturado, de la fecha de solicitud, de la fecha de facturación, de la lista de insumos
+	 *
+	 * @param numeroDeFactura
+	 * @param fechaDeSolicitud
+	 * @param listaDeInsumos
+	 * @return
+	 */
+	public double calculoImporteAdicionales(int numeroDeFactura,GregorianCalendar fechaDeSolicitud,ArrayList<Double> listaDeInsumos){
+		Factura factura = null;
+		double importeParcial = 0;
+		double importeTotal = 0;
+		double respuesta = 0;
+		Random random = new Random();
+		int aleatorio = random.nextInt(31) + 1;
+
+		//busco la factura
+		for (Factura facturaact : this.facturas) {
+			if (facturaact.getNroFactura() == nroFactura) {
+				factura = facturaact;
+			}
+		}
+
+		if (factura!= null){
+			if((factura.getFecha().get(Calendar.DAY_OF_YEAR) - fechaDeSolicitud.get(Calendar.DAY_OF_YEAR) < 10)){
+				importeParcial = factura.getImporteTotal() -(factura.getSubTotalImpar()* 0.7);
+			}
+			else
+				importeParcial = factura.getImporteTotal() * 0.3;
+			if (factura.getPaciente().getRangoEtario().equalsIgnoreCase("mayor")){
+				importeTotal = importeParcial * 1.4;
+			}
+			else
+				importeTotal = importeParcial * 0.85;
+			if (aleatorio == factura.getFecha().get(Calendar.DAY_OF_MONTH)){
+				respuesta = importeTotal;
+			}
+			else {
+				double sumavalores = 0;
+					for(Double valor : listaDeInsumos)
+						sumavalores += valor;
+				respuesta = importeTotal + sumavalores;
+			}
+		}
+		return respuesta;
+	}
 
 	public SalaDeEspera getSalaEspera() {
 		return salaEspera;

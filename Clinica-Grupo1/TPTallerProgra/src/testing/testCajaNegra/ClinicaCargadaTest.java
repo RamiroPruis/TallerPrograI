@@ -33,11 +33,16 @@ public class ClinicaCargadaTest {
     @Test
     public void buscaMedicoCorrectoTest() {
         Clinica clinica = clinicaCargadaEscenario.getClinica();
+
+
         IMedico medico = clinicaCargadaEscenario.getMedico();
         int matricula = Integer.parseInt(medico.getMatricula());
-        assertEquals(medico,clinica.buscaMedico(matricula));
-    }
 
+
+        assertEquals(medico,clinica.buscaMedico(matricula));
+
+
+    }
 
     @Test
     public void egresoCorrectoTest() {
