@@ -137,19 +137,15 @@ public class ClinicaVaciaTest {
     public void asignarHabitacion() {
         Clinica clinica = clinicaVaciaEscenario.getClinica();
         Habitacion habitacion = new HabitacionPrivada(2,100);
+        clinica.asignarHabitacion(habitacion);
 
-
+        assertEquals("La habitacion no se agrego correctamente",habitacion,clinica.getHabitaciones().get(habitacion.getNroHabitacion()));
     }
-
 
 
     @Test
     public void derivarHabitacion() {
     }
-
-
-
-
 
     @Test
     public void buscaHabitacion() {
