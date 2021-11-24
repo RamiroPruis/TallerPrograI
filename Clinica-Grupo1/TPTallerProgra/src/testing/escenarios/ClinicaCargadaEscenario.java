@@ -60,4 +60,12 @@ public class ClinicaCargadaEscenario {
     public Clinica getClinica() {
         return clinica;
     }
+
+    public Paciente getPaciente(){
+        return this.paciente1;
+    }
+
+    public IMedico getMedico() {
+        return medico1;
+    }
 }

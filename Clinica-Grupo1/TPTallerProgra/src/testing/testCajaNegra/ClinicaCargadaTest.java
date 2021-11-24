@@ -4,6 +4,8 @@ import excepciones.NoExisteContratacionException;
 import excepciones.NoExisteEspecialidadException;
 import excepciones.NoExistePosgradoException;
 import excepciones.NoExisteRangoEtarioException;
+import infraestructura.Habitacion;
+import infraestructura.HabitacionPrivada;
 import modelo.Clinica;
 import modelo.IMedico;
 import modelo.MedicoFactory;
