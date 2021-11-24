@@ -116,7 +116,7 @@ public class Clinica {
 		this.listaEspera.add(paciente);
 		
 		if(this.salaEspera.isOcupada()) {
-			if(!this.salaEspera.getPaciente().prioridad(paciente)) {//si cumple, entonces entra this.salaEspera.paciente.prioridad(paciente)==false
+			if(!this.salaEspera.getPaciente().prioridad(paciente)) { //si cumple, entonces entra this.salaEspera.paciente.prioridad(paciente)==false
 				this.patio.add(this.salaEspera.getPaciente());
 				this.salaEspera.ocupaSalaDeEspera(paciente);
 			}
