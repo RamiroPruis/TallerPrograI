@@ -143,27 +143,5 @@ public class ClinicaVaciaTest {
     }
 
 
-    @Test
-    public void derivarHabitacion() {
-    }
 
-    @Test
-    public void buscaHabitacion() {
-    }
-
-    @Test
-    public void buscaUltima() {
-    }
-
-    @Test
-    public void reporteMedico() {
-    }
-
-    @Test
-    public void buscaHistoria() {
-    }
-
-    @Test
-    public void buscaFacturas() {
-    }
 }

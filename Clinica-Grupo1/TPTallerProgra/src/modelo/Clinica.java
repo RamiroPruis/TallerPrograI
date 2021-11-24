@@ -25,6 +25,8 @@ import infraestructura.Prestacion;
  */
 public class Clinica {
 
+
+
 	private int nroFactura = 0;
 	//Atributos
 	private static Clinica instance = null;  // aplico patron singleton

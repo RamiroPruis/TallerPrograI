@@ -27,7 +27,7 @@ protected String DNI,nombre,apellido,ciudad,telefono,domicilio;
 	public String getNombre() {
 	return nombre;
 }
-public String getApellido() {
+	public String getApellido() {
 	return apellido;
 }
 	public void setDNI(String dNI) {

@@ -8,6 +8,7 @@ import infraestructura.Habitacion;
 import infraestructura.Prestacion;
 import personas.Paciente;
 
+
 /**
  * <br>
  * Clase que representa una historia clinica.
@@ -21,7 +22,8 @@ public class HistoriaClinica implements Serializable{
 		this.paciente = paciente;
 		this.prestaciones = prestaciones;
 	}
-	
+
+
 	/** Metodo que agrega una practica medica a la historia Clinica de un paciente.
 	 * * <b>Pre: El parametro IMedico debe ser distinto de null</b>
 	 * <b>Post: Se agrega una practica medica a una historia medica.</b>
