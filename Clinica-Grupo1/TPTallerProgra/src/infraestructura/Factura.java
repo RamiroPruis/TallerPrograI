@@ -30,9 +30,10 @@ public class Factura implements Serializable,Comparable{
      * @aggregation composite
      */
     private ArrayList <Prestacion> prestaciones = new ArrayList <Prestacion>();
-	
-	
-	 public Factura(int nroFactura, GregorianCalendar fecha,Paciente paciente) {
+
+
+
+	public Factura(int nroFactura, GregorianCalendar fecha, Paciente paciente) {
 		 this.paciente=paciente;
 		this.nroFactura = nroFactura;
 		this.fecha = fecha;
@@ -126,6 +127,21 @@ public class Factura implements Serializable,Comparable{
 		
 	
 	}*/
+
+	public double getSubTotalImpar(){
+		double subtotal=0;
+
+		for (int i = 1; i < prestaciones.size(); i += 2){
+			subtotal += prestaciones.get(i).getSubtotal();
+		}
+
+		return subtotal;
+
+	}
+
+	public int getNroFactura() {
+		return nroFactura;
+	}
 	public double getImporteTotal() {
 		return importeTotal;
 	}

@@ -54,6 +54,4 @@ public class ClinicaCargadaTest {
         assertFalse("El paciente no deberia estar en la lista de atencion ",clinica.getListaAtencion().contains(paciente));
 
     }
-
-
 }
