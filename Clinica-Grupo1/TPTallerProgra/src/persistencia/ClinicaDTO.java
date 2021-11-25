@@ -143,17 +143,48 @@ public class ClinicaDTO implements Serializable
 
 
 
-	//Lo agregue para el testing
+//	//Lo agregue para el testing
+//	@Override
+//	public boolean equals(Object o) {
+//		if (this == o) return true;
+//		if (o == null || getClass() != o.getClass()) return false;
+//		ClinicaDTO that = (ClinicaDTO) o;
+//		System.out.println("holaaa");
+//		return nroOrden == that.nroOrden && nroFactura == that.nroFactura && this.nombre.equals(that.nombre) && this.direccion.equals(that.direccion) && this.salaEspera.equals(that.salaEspera) && this.patio.equals(that.patio) && this.listaEspera.equals(that.listaEspera) && this.listaAtencion.equals(that.listaAtencion) && this.facturas.equals(that.facturas) && this.pacientes.equals(that.pacientes) && this.habitaciones.equals(that.habitaciones) && this.medicos.equals(that.medicos);
+//	}
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
+
 		ClinicaDTO that = (ClinicaDTO) o;
-		return nroOrden == that.nroOrden && nroFactura == that.nroFactura && Objects.equals(nombre, that.nombre) && Objects.equals(direccion, that.direccion) && Objects.equals(salaEspera, that.salaEspera) && Objects.equals(patio, that.patio) && Objects.equals(listaEspera, that.listaEspera) && Objects.equals(listaAtencion, that.listaAtencion) && Objects.equals(facturas, that.facturas) && Objects.equals(pacientes, that.pacientes) && Objects.equals(habitaciones, that.habitaciones) && Objects.equals(medicos, that.medicos);
+
+		if (getNroOrden() != that.getNroOrden()) return false;
+		if (getNroFactura() != that.getNroFactura()) return false;
+		if (getNombre() != null ? !getNombre().equals(that.getNombre()) : that.getNombre() != null) return false;
+		if (getDireccion() != null ? !getDireccion().equals(that.getDireccion()) : that.getDireccion() != null)
+			return false;
+		if (getSalaEspera() != null ? !getSalaEspera().equals(that.getSalaEspera()) : that.getSalaEspera() != null)
+			return false;
+		if (getPatio() != null ? !getPatio().equals(that.getPatio()) : that.getPatio() != null) return false;
+		if (getListaEspera() != null ? !getListaEspera().equals(that.getListaEspera()) : that.getListaEspera() != null)
+			return false;
+
+		if (getListaAtencion() != null ? !getListaAtencion().equals(that.getListaAtencion()) : that.getListaAtencion() != null)
+			return false;
+
+		if (getFacturas() != null ? !getFacturas().equals(that.getFacturas()) : that.getFacturas() != null)
+			return false;
+
+		if (getPacientes() != null ? !getPacientes().equals(that.getPacientes()) : that.getPacientes() != null)
+			return false;
+
+		if (getHabitaciones() != null ? !getHabitaciones().equals(that.getHabitaciones()) : that.getHabitaciones() != null)
+			return false;
+		return getMedicos() != null ? getMedicos().equals(that.getMedicos()) : that.getMedicos() == null;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(nombre, direccion, salaEspera, patio, listaEspera, listaAtencion, facturas, pacientes, habitaciones, medicos, nroOrden, nroFactura);
-	}
+
 }
