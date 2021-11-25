@@ -1,11 +1,7 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.TreeSet;
+import java.util.*;
 
 import infraestructura.Factura;
 import infraestructura.Habitacion;
@@ -145,4 +141,19 @@ public class ClinicaDTO implements Serializable
 		this.nroFactura = nroFactura;
 	}
 
+
+
+	//Lo agregue para el testing
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ClinicaDTO that = (ClinicaDTO) o;
+		return nroOrden == that.nroOrden && nroFactura == that.nroFactura && Objects.equals(nombre, that.nombre) && Objects.equals(direccion, that.direccion) && Objects.equals(salaEspera, that.salaEspera) && Objects.equals(patio, that.patio) && Objects.equals(listaEspera, that.listaEspera) && Objects.equals(listaAtencion, that.listaAtencion) && Objects.equals(facturas, that.facturas) && Objects.equals(pacientes, that.pacientes) && Objects.equals(habitaciones, that.habitaciones) && Objects.equals(medicos, that.medicos);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre, direccion, salaEspera, patio, listaEspera, listaAtencion, facturas, pacientes, habitaciones, medicos, nroOrden, nroFactura);
+	}
 }
