@@ -40,6 +40,7 @@ public class ClinicaCargadaEscenario {
             h1 = new HabitacionPrivada(1,1000);
             h2 = new HabitacionCompartida(2,500);
             clinica.asignarHabitacion(h1);
+            clinica.asignarHabitacion(h2);
 
             medico1 =MedicoFactory.getMedico("1234","Adolf","Spinelli","Mar del Plata","231412413","Lopez 1234","2394","Cirujia","Permanente","Magister");
             medico2 =MedicoFactory.getMedico("1234","Leonel","Guccione","Mar del Plata","231412413","Lopez 1234","2384","Cirujia","Permanente","Doctor");
@@ -67,5 +68,9 @@ public class ClinicaCargadaEscenario {
 
     public IMedico getMedico() {
         return medico1;
+    }
+
+    public Habitacion getHabitacion(){
+        return h1;
     }
 }

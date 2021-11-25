@@ -20,13 +20,14 @@ public class SalaDeEspera implements Serializable{
 	public boolean isOcupada() {
 		return this.ocupada;
 	}
+
 	public Paciente getPaciente() {
 		return paciente;
 	}
+
 	public void ocupaSalaDeEspera(Paciente paciente) {
 		this.paciente=paciente;
 		this.ocupada=true;
-		
 	}
 	public void desocupar() {
 		this.ocupada = false;

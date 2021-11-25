@@ -4,13 +4,13 @@ import excepciones.NoExisteContratacionException;
 import excepciones.NoExisteEspecialidadException;
 import excepciones.NoExistePosgradoException;
 import excepciones.NoExisteRangoEtarioException;
+import infraestructura.Factura;
 import infraestructura.Habitacion;
 import infraestructura.HabitacionPrivada;
-import modelo.Clinica;
-import modelo.IMedico;
-import modelo.MedicoFactory;
-import modelo.PacienteFactory;
+import infraestructura.Prestacion;
+import modelo.*;
 import org.junit.*;
+import personas.Medico;
 import personas.Paciente;
 import testing.escenarios.ClinicaCargadaEscenario;
 
@@ -31,7 +31,7 @@ public class ClinicaCargadaTest {
 
 
     @Test
-    public void buscaMedico() {
+    public void buscaMedicoCorrectoTest() {
         Clinica clinica = clinicaCargadaEscenario.getClinica();
 
 
@@ -45,7 +45,7 @@ public class ClinicaCargadaTest {
     }
 
     @Test
-    public void egreso() {
+    public void egresoCorrectoTest() {
         Clinica clinica = clinicaCargadaEscenario.getClinica();
 
         Paciente paciente = clinicaCargadaEscenario.getPaciente();
@@ -54,4 +54,49 @@ public class ClinicaCargadaTest {
         assertFalse("El paciente no deberia estar en la lista de atencion ",clinica.getListaAtencion().contains(paciente));
 
     }
+
+    @Test
+    public void buscaHabitacionCorrectaTest() {
+        Clinica clinica = clinicaCargadaEscenario.getClinica();
+        Habitacion habitacion = clinicaCargadaEscenario.getHabitacion();
+        int nroHab = habitacion.getNroHabitacion();
+        assertEquals("La habitación encontrada debería ser la correcta",habitacion,clinica.buscaHabitacion(nroHab));
+    }
+
+    @Test
+    public void buscaHabitacionIncorrectaTest(){
+        Clinica clinica = clinicaCargadaEscenario.getClinica();
+        int nroHab = 234;
+        assertEquals("La habitacion no se deberia encontrar",null,clinica.buscaHabitacion(nroHab));
+    }
+
+    @Test
+    public void buscaUltimaCorrectaTest() {
+        Clinica clinica = clinicaCargadaEscenario.getClinica();
+        Paciente p1 = clinicaCargadaEscenario.getPaciente();
+        IMedico medico = clinicaCargadaEscenario.getMedico();
+        clinica.atenderPaciente(p1);
+        Factura f1 = clinica.getFacturas().last();
+        assertEquals("La factura deberia ser la ultima factura del paciente",f1,clinica.buscaUltima(p1));
+
+    }
+
+
+    @Test
+    public void buscaHistoriaCorrectaTest() {
+        Clinica clinica = clinicaCargadaEscenario.getClinica();
+        Paciente p1 = clinicaCargadaEscenario.getPaciente();
+        clinica.atenderPaciente(p1);
+        int historia = p1.getNumeroHistoria();
+        assertEquals("La historia clinica deberia haber sido encontrada correctamente",p1,clinica.buscaHistoria(historia).getPaciente());
+    }
+
+    @Test
+    public void buscaHistoriaIncorrectaTest() {
+        Clinica clinica = clinicaCargadaEscenario.getClinica();
+        int historia = 290;
+        assertThrows("Deberia haber lanzado Null Pointer Exception",NullPointerException.class,()->{clinica.buscaHistoria(historia).getPaciente();});
+    }
+
+
 }
