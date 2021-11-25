@@ -39,8 +39,11 @@ public class SalaDeEspera implements Serializable{
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
+
 		SalaDeEspera that = (SalaDeEspera) o;
-		return ocupada == that.ocupada && Objects.equals(paciente, that.paciente);
+
+		if (isOcupada() != that.isOcupada()) return false;
+		return getPaciente() != null ? getPaciente().equals(that.getPaciente()) : that.getPaciente() == null;
 	}
 
 	@Override

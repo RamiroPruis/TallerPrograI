@@ -77,8 +77,31 @@ private int numeroHistoria,nroOrden;
 
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Paciente paciente = (Paciente) o;
+
+		if (getNumeroHistoria() != paciente.getNumeroHistoria()) return false;
+		if (getNroOrden() != paciente.getNroOrden()) return false;
+		return getRangoEtario() != null ? getRangoEtario().equals(paciente.getRangoEtario()) : paciente.getRangoEtario() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getRangoEtario() != null ? getRangoEtario().hashCode() : 0;
+		result = 31 * result + getNumeroHistoria();
+		result = 31 * result + getNroOrden();
+		return result;
+	}
+
+	@Override
 	public String toString() {
 		return nombre + " " + apellido + " " +DNI ;
+
+
+
 		
 }
 	

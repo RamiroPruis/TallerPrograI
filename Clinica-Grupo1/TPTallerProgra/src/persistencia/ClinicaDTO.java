@@ -161,19 +161,29 @@ public class ClinicaDTO implements Serializable
 
 		ClinicaDTO that = (ClinicaDTO) o;
 
+
+
 		if (getNroOrden() != that.getNroOrden()) return false;
+
 		if (getNroFactura() != that.getNroFactura()) return false;
+
 		if (getNombre() != null ? !getNombre().equals(that.getNombre()) : that.getNombre() != null) return false;
+
 		if (getDireccion() != null ? !getDireccion().equals(that.getDireccion()) : that.getDireccion() != null)
 			return false;
+
 		if (getSalaEspera() != null ? !getSalaEspera().equals(that.getSalaEspera()) : that.getSalaEspera() != null)
 			return false;
+
 		if (getPatio() != null ? !getPatio().equals(that.getPatio()) : that.getPatio() != null) return false;
+
 		if (getListaEspera() != null ? !getListaEspera().equals(that.getListaEspera()) : that.getListaEspera() != null)
 			return false;
 
+
 		if (getListaAtencion() != null ? !getListaAtencion().equals(that.getListaAtencion()) : that.getListaAtencion() != null)
 			return false;
+
 
 		if (getFacturas() != null ? !getFacturas().equals(that.getFacturas()) : that.getFacturas() != null)
 			return false;
@@ -183,7 +193,31 @@ public class ClinicaDTO implements Serializable
 
 		if (getHabitaciones() != null ? !getHabitaciones().equals(that.getHabitaciones()) : that.getHabitaciones() != null)
 			return false;
-		return getMedicos() != null ? getMedicos().equals(that.getMedicos()) : that.getMedicos() == null;
+
+		if (getMedicos() != null){
+			Iterator<Map.Entry<Integer, IMedico>> myIterator = this.getMedicos().entrySet().iterator();
+			Iterator<Map.Entry<Integer, IMedico>> thatIterator = that.getMedicos().entrySet().iterator();
+			Map.Entry<Integer, IMedico> myCurrent;
+			Map.Entry<Integer, IMedico> thatCurrent;
+			boolean condition = true;
+			while (myIterator.hasNext() && thatIterator.hasNext()){
+				myCurrent = myIterator.next();
+				thatCurrent = thatIterator.next();
+				if( !(myCurrent.getKey().equals(thatCurrent.getKey()) && myCurrent.getValue().equals(thatCurrent.getValue())))
+					return false;
+
+			}
+
+			return myIterator.hasNext() == thatIterator.hasNext();
+		}
+		else{
+			return that.getMedicos() == null;
+		}
+
+
+
+
+
 	}
 
 

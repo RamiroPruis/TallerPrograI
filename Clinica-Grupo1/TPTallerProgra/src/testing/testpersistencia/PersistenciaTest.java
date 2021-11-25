@@ -18,9 +18,6 @@ public class PersistenciaTest {
 
     @Before
     public void setUp() {
-        //Creamos una clinica desde cero (vacia)
-        Clinica.setInstance(null);
-        Clinica.getInstance();
 
         //Aca estamos checkeando que si habia un archivo que lo elimine
         File file = new File("clinicaPersistida.bin");
@@ -49,6 +46,11 @@ public class PersistenciaTest {
 
     @Test
     public void testClinicaVacia() {
+
+        //Creamos una clinica VACIA
+        Clinica.setInstance(null);
+        Clinica.getInstance();
+
         Persistencia persistencia = new Persistencia();
         ClinicaDTO clinicaDTO = Util.clinicaDTOFromCLinica();
 
@@ -67,6 +69,7 @@ public class PersistenciaTest {
                 persistencia.cerrarInput();
                 assertTrue("Las clinicas deben ser iguales", clinicaDespersistida.equals(clinicaDTO));
 
+
             } catch (ClassNotFoundException e) {
                 fail("No deberia entrar aca");
             }
@@ -74,6 +77,39 @@ public class PersistenciaTest {
         } catch (IOException e) {
             fail("No deberia entrar aca");
         }
+    }
+
+
+    @Test
+    public void testClinicaConDatos(){
+
+        Persistencia persistencia = new Persistencia();
+        ClinicaCargada.cargaClinica(); //Carga la clinica con cosas (hardcode)
+        ClinicaDTO clinicaDTO = Util.clinicaDTOFromCLinica();
+
+        try {
+            //Creamos el archivo y persistimos
+            persistencia.abrirOutput("clinicaPersistida.bin");
+            persistencia.escribir(clinicaDTO);
+            persistencia.cerrarOutput();
+
+
+            try {
+                //Abrimos el archivo y despersistimos
+                persistencia.abrirInput("clinicaPersistida.bin");
+                ClinicaDTO clinicaDespersistida = (ClinicaDTO) persistencia.leer();
+                persistencia.cerrarOutput();
+                assertTrue("Las clinicas deben ser iguales", clinicaDespersistida.equals(clinicaDTO));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Despersistimos
+
     }
 
 }
