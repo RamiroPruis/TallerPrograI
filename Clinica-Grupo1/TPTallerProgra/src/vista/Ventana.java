@@ -299,6 +299,20 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 		
 		
 		this.setVisible(true);
+
+
+		this.btn_Atender.setName("btn_Atender");
+		this.btn_Cargar.setName("btn_Cargar");
+		this.btn_Egreso.setName("btn_Egreso");
+		this.btn_Serializar.setName("btn_Serializar");
+		this.btn_PrestacionHabitacion.setName("btn_PrestacionHabitacion");
+		this.btn_PrestacionMedica.setName("btn_PrestacionMedica");
+		this.list_habitaciones.setName("list_habitaciones");
+		this.list_medicos.setName("list_medicos");
+		this.list_pacientes.setName("list_pacientes");
+		this.list_facturas.setName("list_facturas");
+		this.textField_cantDias.setName("textField_cantDias");
+
 	}
 
 
