@@ -1,6 +1,4 @@
-package testing;
-
-import static org.junit.Assert.*;
+package testing.cajaBlanca;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -9,12 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.NoExisteContratacionException;
-import excepciones.NoExisteEspecialidadException;
-import excepciones.NoExistePosgradoException;
 import modelo.Clinica;
-import modelo.IMedico;
-import modelo.MedicoFactory;
 
 public class CajaBlancaEscenario1Test {
 	

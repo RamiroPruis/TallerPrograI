@@ -1,4 +1,4 @@
-package testing;
+package testing.cajaBlanca;
 
 import modelo.Clinica;
 
