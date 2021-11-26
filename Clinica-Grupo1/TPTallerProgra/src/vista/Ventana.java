@@ -428,7 +428,7 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 	}
 	@Override
 	public void mensaje(String msj) {
-		TestUtils.getMensaje(msj);
+		TestUtils.setMensaje(msj);
 		JOptionPane.showMessageDialog(this,msj);
 	}
 	@Override

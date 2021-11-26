@@ -127,7 +127,8 @@ public class TestUtils {
         }
     }
 
-    public static void getMensaje(String msg){
+    public static void setMensaje(String msg){
+        System.out.println(msg);
         msgDialog = msg;
     }
 

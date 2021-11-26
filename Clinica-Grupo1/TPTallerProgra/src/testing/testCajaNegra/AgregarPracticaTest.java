@@ -17,7 +17,7 @@ import modelo.IMedico;
 import modelo.MedicoFactory;
 import testing.escenarios.EscenarioHistoriaClinica;
 
-public class agregarPracticaTest {
+public class AgregarPracticaTest {
 	
 	EscenarioHistoriaClinica escenario;
 

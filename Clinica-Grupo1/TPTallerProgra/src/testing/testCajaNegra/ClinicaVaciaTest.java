@@ -119,7 +119,7 @@ public class ClinicaVaciaTest {
         Clinica clinica = clinicaVaciaEscenario.getClinica();
 
         try {
-            IMedico medico = MedicoFactory.getMedico("123145","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","A1432","Cirujia","Permanente","Magister");
+            IMedico medico = MedicoFactory.getMedico("123145","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","1432","Cirujia","Permanente","Magister");
             clinica.agregarMedico(medico);
             assertEquals(medico,clinica.buscaMedico(Integer.parseInt(medico.getMatricula())));
         } catch (NoExisteEspecialidadException e) {

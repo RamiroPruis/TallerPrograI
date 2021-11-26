@@ -14,7 +14,7 @@ import personas.Mayor;
 import personas.Paciente;
 import testing.escenarios.EscenarioBD;
 
-public class buscarPacienteTest {
+public class BuscarPacienteTest {
 
 	EscenarioBD escenario;
 	

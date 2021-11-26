@@ -14,7 +14,7 @@ import modelo.BDdePacientes;
 import modelo.HistoriaClinica;
 import testing.escenarios.EscenarioBD;
 
-public class altaDePacienteTest {
+public class AltaDePacienteTest {
 	
 	EscenarioBD escenario;
 

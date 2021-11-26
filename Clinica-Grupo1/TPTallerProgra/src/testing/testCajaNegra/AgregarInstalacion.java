@@ -13,7 +13,7 @@ import infraestructura.Prestacion;
 import modelo.HistoriaClinica;
 import testing.escenarios.EscenarioHistoriaClinica;
 
-public class agregarInstalacion {
+public class AgregarInstalacion {
 	
 	EscenarioHistoriaClinica escenario;
 

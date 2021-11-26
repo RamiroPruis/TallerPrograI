@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 
 
 public class GUITestDatos {
-    public static final int DELAY = 20;
+    public static final int DELAY = 50;
     private Robot robot;
     private Controlador controlador;
     public GUITestDatos() {
@@ -35,6 +35,8 @@ public class GUITestDatos {
 
     @Before
     public void setUp() throws Exception{
+        robot.delay(DELAY);
+        Clinica.setInstance(null);
         Ventana ventana = new Ventana();
         ClinicaCargadaEscenario escenario = new ClinicaCargadaEscenario();
         controlador = new Controlador(ventana,ventana,ventana,ventana);
@@ -44,6 +46,10 @@ public class GUITestDatos {
     @After
     public void tearDown() throws Exception
     {
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.delay(DELAY);
+        Ventana ventana = (Ventana) controlador.getVistaPaciente();
+        ventana.setVisible(false);
         Clinica.setInstance(null);
     }
 
@@ -109,8 +115,8 @@ public class GUITestDatos {
         robot.keyRelease(KeyEvent.VK_SHIFT);
         robot.delay(DELAY);
         aprieta(KeyEvent.VK_RIGHT,robot);
+        robot.delay(DELAY);
         aprieta(KeyEvent.VK_RIGHT,robot);
-
         robot.delay(DELAY);
 
         JTextField textField_cantDias = (JTextField) TestUtils.getComponentForName((Component) controlador.getVistaHabitacion(),"textField_cantDias");
@@ -139,6 +145,24 @@ public class GUITestDatos {
 
         assertEquals("El mensaje mostrado es incorrecto",esperado,TestUtils.msgDialog);
 
+    }
+
+    @Test
+    public void intentaAtenderSinCargar(){
+        JButton btn_atender = (JButton) TestUtils.getComponentForName((Component) controlador.getVistaPaciente(),"btn_atender");
+        assertFalse("El boton deberia estar deshabilitado",btn_atender.isEnabled());
+    }
+
+    @Test
+    public void todosAtendidos(){
+        JButton button = (JButton) TestUtils.getComponentForName((Component) controlador.getVistaPaciente(),"btn_Cargar");
+        TestUtils.clickComponent(button,robot);
+        robot.delay(DELAY);
+
+        JButton btn_atender = (JButton) TestUtils.getComponentForName((Component) controlador.getVistaPaciente(),"btn_atender");
+        TestUtils.clickComponent(btn_atender,robot);
+
+        assertEquals("El mensaje esperado no es correcto","No hay mas pacientes en la lista de espera",TestUtils.msgDialog);
     }
 
     public void aprieta(int key,Robot robot){
