@@ -1,6 +1,7 @@
 package testing.cajaBlanca;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TreeSet;
 
@@ -60,8 +61,8 @@ public class EscenarioCBFacturas {
 			e.printStackTrace();
 		}*/
 		
-		Factura factMayor = new Factura(1,new GregorianCalendar(2021,11,24),pacienteMayor);
-		Factura factJoven = new Factura(2,new GregorianCalendar(2021,11,6),pacienteJoven);
+		Factura factMayor = new Factura(1,new GregorianCalendar(2021,Calendar.NOVEMBER,24),pacienteMayor);
+		Factura factJoven = new Factura(2,new GregorianCalendar(2021,Calendar.NOVEMBER,6),pacienteJoven);
 		
 		factMayor.asignarHabitacion(habitacion);
 		factMayor.asignarMedico(medico);
