@@ -41,7 +41,6 @@ public class AgregarInstalacion {
 		while(it.hasNext() && !cond){
 			Prestacion presta = it.next();
 			if (presta.getPrestacion().equals(hab.toString())) {
-			//if (presta.getPrestacion().equals(habNO.toString())) { //deberia enviar error
 				cond = true;
 			}
 		}

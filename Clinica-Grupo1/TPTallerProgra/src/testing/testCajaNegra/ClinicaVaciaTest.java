@@ -63,7 +63,7 @@ public class ClinicaVaciaTest {
             clinicaActual.ingresoPaciente(pacienteMayor);
             clinicaActual.ingresoPaciente(pacienteJoven);
             SalaDeEspera sala = clinicaActual.getSalaEspera();
-            assertTrue("El paciente en la sala de espera deberia ser el Joven",sala.getPaciente().equals(pacienteJoven));
+            assertEquals("El paciente en la sala de espera deberia ser el Joven","Joven",sala.getPaciente().getRangoEtario());
         } catch (NoExisteRangoEtarioException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,8 @@ public class ClinicaVaciaTest {
                 Paciente pacienteNino = PacienteFactory.getPaciente("123456","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","Nino");
                 clinicaActual.ingresoPaciente(pacienteJoven);
                 clinicaActual.ingresoPaciente(pacienteNino);
-                assertTrue("El paciente en la Sala de Espera deberia ser un Nino",clinicaActual.getSalaEspera().getPaciente().equals(pacienteNino));
+                SalaDeEspera sala = clinicaActual.getSalaEspera();
+                assertEquals("El paciente en la Sala de Espera deberia ser un Nino","Nino",sala.getPaciente().getRangoEtario());
             } catch (NoExisteRangoEtarioException e) {
                 e.printStackTrace();
             }
@@ -91,11 +92,13 @@ public class ClinicaVaciaTest {
             Paciente pacienteNino = PacienteFactory.getPaciente("123456","Mariano","Garcia","Mar del Plata","2234534434","Lopez 1234","Nino");
             clinicaActual.ingresoPaciente(pacienteMayor);
             clinicaActual.ingresoPaciente(pacienteNino);
-            assertTrue("El paciente en la Sala de Espera deberia ser un Mayor",clinicaActual.getSalaEspera().getPaciente().equals(pacienteMayor));
+            SalaDeEspera sala = clinicaActual.getSalaEspera();
+            assertEquals("El paciente en la Sala de Espera deberia ser un Mayor","Mayor",sala.getPaciente().getRangoEtario());
         } catch (NoExisteRangoEtarioException e) {
             e.printStackTrace();
         }
     }
+
 
     //EL PACIENTE NO ESTA ASOCIADO A LA CLINICA, Y DE TODAS FORMAS PUEDE ATENDERSE (Pre condicion confusa)
     //INCONSISTENCIA CON LA DOCUMENTACION.
@@ -141,6 +144,8 @@ public class ClinicaVaciaTest {
 
         assertEquals("La habitacion no se agrego correctamente",habitacion,clinica.getHabitaciones().get(habitacion.getNroHabitacion()));
     }
+
+
 
 
 
