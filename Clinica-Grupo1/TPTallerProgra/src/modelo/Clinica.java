@@ -373,8 +373,8 @@ public class Clinica {
                 if (listaDeInsumos != null) {
                 	for (Double valor : listaDeInsumos)
                         sumavalores += valor;
-                    respuesta = importeTotal + sumavalores;
-                }                
+                }    
+                respuesta = importeTotal + sumavalores;               
             }
         }
         return respuesta;
