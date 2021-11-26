@@ -1,0 +1,168 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EscenarioCBFacturas</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">testing.cajaBlanca</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EscenarioCBFacturas (testing.cajaBlanca)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EscenarioCBFacturas</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78,6%
+  </span>
+  <span class="absValue">
+    (22/ 28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package testing.cajaBlanca;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.Calendar;
+<i>5</i>&nbsp;import java.util.GregorianCalendar;
+<i>6</i>&nbsp;import java.util.TreeSet;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import excepciones.HabitacionOcupadaException;
+<i>9</i>&nbsp;import excepciones.NoExisteContratacionException;
+<i>10</i>&nbsp;import excepciones.NoExisteEspecialidadException;
+<i>11</i>&nbsp;import excepciones.NoExistePosgradoException;
+<i>12</i>&nbsp;import infraestructura.Factura;
+<i>13</i>&nbsp;import infraestructura.HabitacionPrivada;
+<i>14</i>&nbsp;import infraestructura.Prestacion;
+<i>15</i>&nbsp;import modelo.Clinica;
+<i>16</i>&nbsp;import modelo.IMedico;
+<i>17</i>&nbsp;import modelo.MedicoFactory;
+<i>18</i>&nbsp;import personas.Joven;
+<i>19</i>&nbsp;import personas.Mayor;
+<i>20</i>&nbsp;import personas.Paciente;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;public class EscenarioCBFacturas {
+<i>23</i>&nbsp;	
+<b class="fc"><i>24</i>&nbsp;	private Clinica clinica = Clinica.getInstance();</b>
+<i>25</i>&nbsp;	
+<b class="fc"><i>26</i>&nbsp;	public EscenarioCBFacturas(){</b>
+<b class="fc"><i>27</i>&nbsp;		TreeSet&lt;Factura&gt; facturas = new TreeSet&lt;&gt;();</b>
+<b class="fc"><i>28</i>&nbsp;		ArrayList &lt;Prestacion&gt; prestaciones = new ArrayList &lt;Prestacion&gt;();</b>
+<i>29</i>&nbsp;		
+<b class="fc"><i>30</i>&nbsp;		IMedico medico = null;</b>
+<i>31</i>&nbsp;		try {
+<b class="fc"><i>32</i>&nbsp;			medico = MedicoFactory.getMedico(&quot;444&quot;,&quot;Nombre 4&quot;, &quot;Apellido 4&quot;, &quot;Ciudad 4&quot;, &quot;444&quot;, &quot;Domicilio 4&quot;, &quot;Mat 4&quot;, &quot;Cirujia&quot;, &quot;Permanente&quot;, &quot;Magister&quot;);</b>
+<b class="nc"><i>33</i>&nbsp;		} catch (NoExisteEspecialidadException e) {</b>
+<i>34</i>&nbsp;			// TODO Auto-generated catch block
+<b class="nc"><i>35</i>&nbsp;			e.printStackTrace();</b>
+<b class="nc"><i>36</i>&nbsp;		} catch (NoExisteContratacionException e) {</b>
+<i>37</i>&nbsp;			// TODO Auto-generated catch block
+<b class="nc"><i>38</i>&nbsp;			e.printStackTrace();</b>
+<b class="nc"><i>39</i>&nbsp;		} catch (NoExistePosgradoException e) {</b>
+<i>40</i>&nbsp;			// TODO Auto-generated catch block
+<b class="nc"><i>41</i>&nbsp;			e.printStackTrace();</b>
+<b class="fc"><i>42</i>&nbsp;		}</b>
+<i>43</i>&nbsp;		
+<b class="fc"><i>44</i>&nbsp;		HabitacionPrivada habitacion = new HabitacionPrivada(1,100);</b>
+<b class="fc"><i>45</i>&nbsp;		habitacion.setCantDias(2);</b>
+<i>46</i>&nbsp;		
+<b class="fc"><i>47</i>&nbsp;		Paciente pacienteMayor = new Mayor(&quot;222&quot;,&quot;Nombre 2&quot;, &quot;Apellido 2&quot;, &quot;Ciudad 2&quot;, &quot;222&quot;, &quot;Domicilio 2&quot;);</b>
+<i>48</i>&nbsp;		
+<i>49</i>&nbsp;		
+<b class="fc"><i>50</i>&nbsp;		Paciente pacienteJoven = new Joven(&quot;333&quot;,&quot;Nombre 3&quot;, &quot;Apellido 3&quot;, &quot;Ciudad 3&quot;, &quot;333&quot;, &quot;Domicilio 3&quot;);</b>
+<i>51</i>&nbsp;		
+<i>52</i>&nbsp;		/*
+<i>53</i>&nbsp;		clinica.derivarMedico(pacienteJoven, medico);
+<i>54</i>&nbsp;		clinica.derivarMedico(pacienteMayor, medico);
+<i>55</i>&nbsp;		
+<i>56</i>&nbsp;		try {
+<i>57</i>&nbsp;			clinica.derivarHabitacion(pacienteMayor, habitacion);
+<i>58</i>&nbsp;			clinica.derivarHabitacion(pacienteJoven, habitacion);
+<i>59</i>&nbsp;		} catch (HabitacionOcupadaException e) {
+<i>60</i>&nbsp;			// TODO Auto-generated catch block
+<i>61</i>&nbsp;			e.printStackTrace();
+<i>62</i>&nbsp;		}*/
+<i>63</i>&nbsp;		
+<b class="fc"><i>64</i>&nbsp;		Factura factMayor = new Factura(1,new GregorianCalendar(2021,Calendar.NOVEMBER,24),pacienteMayor);</b>
+<b class="fc"><i>65</i>&nbsp;		Factura factJoven = new Factura(2,new GregorianCalendar(2021,Calendar.NOVEMBER,6),pacienteJoven);</b>
+<i>66</i>&nbsp;		
+<b class="fc"><i>67</i>&nbsp;		factMayor.asignarHabitacion(habitacion);</b>
+<b class="fc"><i>68</i>&nbsp;		factMayor.asignarMedico(medico);</b>
+<i>69</i>&nbsp;		
+<b class="fc"><i>70</i>&nbsp;		factJoven.asignarHabitacion(habitacion);</b>
+<b class="fc"><i>71</i>&nbsp;		factJoven.asignarMedico(medico);</b>
+<i>72</i>&nbsp;		
+<i>73</i>&nbsp;		
+<b class="fc"><i>74</i>&nbsp;		facturas.add(factMayor);</b>
+<b class="fc"><i>75</i>&nbsp;		facturas.add(factJoven);</b>
+<i>76</i>&nbsp;		
+<i>77</i>&nbsp;		
+<b class="fc"><i>78</i>&nbsp;		clinica.setFacturas(facturas);</b>
+<b class="fc"><i>79</i>&nbsp;	}</b>
+<i>80</i>&nbsp;	
+<i>81</i>&nbsp;	public Clinica getClinica(){
+<b class="fc"><i>82</i>&nbsp;		return clinica;</b>
+<i>83</i>&nbsp;	}
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-26 18:48</div>
+</div>
+</body>
+</html>
