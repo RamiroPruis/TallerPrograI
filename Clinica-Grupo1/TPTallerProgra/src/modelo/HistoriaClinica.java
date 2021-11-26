@@ -16,6 +16,7 @@ import personas.Paciente;
 public class HistoriaClinica implements Serializable{
       private Paciente paciente;
       private ArrayList <Prestacion> prestaciones = new ArrayList <Prestacion>();
+      
 	public HistoriaClinica(Paciente paciente, ArrayList<Prestacion> prestaciones) {
 		
 		this.paciente = paciente;
