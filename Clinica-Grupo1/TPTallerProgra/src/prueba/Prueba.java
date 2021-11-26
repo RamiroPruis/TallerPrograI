@@ -1,5 +1,6 @@
 package prueba;
 
+import infraestructura.Factura;
 import personas.Paciente;
 //port vista.Ventana;
 import modelo.Clinica;
@@ -15,6 +16,7 @@ import util.Util;
 import vista.Ventana;
 import persistencia.ClinicaDTO;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import controlador.Controlador;
 import excepciones.ImposibleCrearMedicoException;
@@ -106,6 +108,15 @@ public class Prueba {
         	System.out.println("Exception " + e.getMessage());
         }    
         Ventana ventana = new Ventana(); 
-        Controlador  controlador = new Controlador(ventana,ventana,ventana,ventana);		
+        Controlador  controlador = new Controlador(ventana,ventana,ventana,ventana);
+
+
+
+        //Esto es para la caja BLANCA
+		Factura factura = Clinica.getInstance().getFacturas().first();
+		ArrayList<Double> insumos = new ArrayList<Double>();
+		insumos.add(20.0);
+		insumos.add(24.0);
+        Clinica.getInstance().calculoImporteAdicionales(factura.getNroFactura(), factura.getFecha(),insumos);
 	}
 }

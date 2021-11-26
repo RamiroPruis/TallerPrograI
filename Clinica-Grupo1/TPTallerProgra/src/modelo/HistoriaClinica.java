@@ -8,6 +8,7 @@ import infraestructura.Habitacion;
 import infraestructura.Prestacion;
 import personas.Paciente;
 
+
 /**
  * <br>
  * Clase que representa una historia clinica.
@@ -22,7 +23,8 @@ public class HistoriaClinica implements Serializable{
 		this.paciente = paciente;
 		this.prestaciones = prestaciones;
 	}
-	
+
+
 	/** Metodo que agrega una practica medica a la historia Clinica de un paciente.
 	 * * <b>Pre: El parametro IMedico debe ser distinto de null</b>
 	 * <b>Post: Se agrega una practica medica a una historia medica.</b>
@@ -66,5 +68,24 @@ public class HistoriaClinica implements Serializable{
 	public String toString() {
 		return "HistoriaClinica [paciente=" + paciente + ", prestaciones=" + prestaciones + "]";
 	}
-      
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		HistoriaClinica that = (HistoriaClinica) o;
+
+		if (getPaciente() != null ? !getPaciente().equals(that.getPaciente()) : that.getPaciente() != null)
+			return false;
+		return getPrestaciones() != null ? getPrestaciones().equals(that.getPrestaciones()) : that.getPrestaciones() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getPaciente() != null ? getPaciente().hashCode() : 0;
+		result = 31 * result + (getPrestaciones() != null ? getPrestaciones().hashCode() : 0);
+		return result;
+	}
 }

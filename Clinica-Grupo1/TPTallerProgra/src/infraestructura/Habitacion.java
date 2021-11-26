@@ -62,7 +62,29 @@ public abstract class Habitacion implements Serializable{
 		this.cantDias = cantDias;
 	}
 
-	
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Habitacion that = (Habitacion) o;
+
+		if (getNroHabitacion() != that.getNroHabitacion()) return false;
+		if (getCantDias() != that.getCantDias()) return false;
+		if (Double.compare(that.getCostoAsignacion(), getCostoAsignacion()) != 0) return false;
+		return getCantPersonas() == that.getCantPersonas();
+	}
+
+	@Override
+	public int hashCode() {
+		int result;
+		long temp;
+		result = getNroHabitacion();
+		result = 31 * result + getCantDias();
+		temp = Double.doubleToLongBits(getCostoAsignacion());
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		result = 31 * result + getCantPersonas();
+		return result;
+	}
 }

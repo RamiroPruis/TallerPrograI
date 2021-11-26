@@ -1,11 +1,7 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.TreeSet;
+import java.util.*;
 
 import infraestructura.Factura;
 import infraestructura.Habitacion;
@@ -144,5 +140,85 @@ public class ClinicaDTO implements Serializable
 	public void setNroFactura(int nroFactura) {
 		this.nroFactura = nroFactura;
 	}
+
+
+
+//	//Lo agregue para el testing
+//	@Override
+//	public boolean equals(Object o) {
+//		if (this == o) return true;
+//		if (o == null || getClass() != o.getClass()) return false;
+//		ClinicaDTO that = (ClinicaDTO) o;
+//		System.out.println("holaaa");
+//		return nroOrden == that.nroOrden && nroFactura == that.nroFactura && this.nombre.equals(that.nombre) && this.direccion.equals(that.direccion) && this.salaEspera.equals(that.salaEspera) && this.patio.equals(that.patio) && this.listaEspera.equals(that.listaEspera) && this.listaAtencion.equals(that.listaAtencion) && this.facturas.equals(that.facturas) && this.pacientes.equals(that.pacientes) && this.habitaciones.equals(that.habitaciones) && this.medicos.equals(that.medicos);
+//	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		ClinicaDTO that = (ClinicaDTO) o;
+
+
+
+		if (getNroOrden() != that.getNroOrden()) return false;
+
+		if (getNroFactura() != that.getNroFactura()) return false;
+
+		if (getNombre() != null ? !getNombre().equals(that.getNombre()) : that.getNombre() != null) return false;
+
+		if (getDireccion() != null ? !getDireccion().equals(that.getDireccion()) : that.getDireccion() != null)
+			return false;
+
+		if (getSalaEspera() != null ? !getSalaEspera().equals(that.getSalaEspera()) : that.getSalaEspera() != null)
+			return false;
+
+		if (getPatio() != null ? !getPatio().equals(that.getPatio()) : that.getPatio() != null) return false;
+
+		if (getListaEspera() != null ? !getListaEspera().equals(that.getListaEspera()) : that.getListaEspera() != null)
+			return false;
+
+
+		if (getListaAtencion() != null ? !getListaAtencion().equals(that.getListaAtencion()) : that.getListaAtencion() != null)
+			return false;
+
+
+		if (getFacturas() != null ? !getFacturas().equals(that.getFacturas()) : that.getFacturas() != null)
+			return false;
+
+		if (getPacientes() != null ? !getPacientes().equals(that.getPacientes()) : that.getPacientes() != null)
+			return false;
+
+		if (getHabitaciones() != null ? !getHabitaciones().equals(that.getHabitaciones()) : that.getHabitaciones() != null)
+			return false;
+
+		if (getMedicos() != null){
+			Iterator<Map.Entry<Integer, IMedico>> myIterator = this.getMedicos().entrySet().iterator();
+			Iterator<Map.Entry<Integer, IMedico>> thatIterator = that.getMedicos().entrySet().iterator();
+			Map.Entry<Integer, IMedico> myCurrent;
+			Map.Entry<Integer, IMedico> thatCurrent;
+			boolean condition = true;
+			while (myIterator.hasNext() && thatIterator.hasNext()){
+				myCurrent = myIterator.next();
+				thatCurrent = thatIterator.next();
+				if( !(myCurrent.getKey().equals(thatCurrent.getKey()) && myCurrent.getValue().equals(thatCurrent.getValue())))
+					return false;
+
+			}
+
+			return myIterator.hasNext() == thatIterator.hasNext();
+		}
+		else{
+			return that.getMedicos() == null;
+		}
+
+
+
+
+
+	}
+
 
 }

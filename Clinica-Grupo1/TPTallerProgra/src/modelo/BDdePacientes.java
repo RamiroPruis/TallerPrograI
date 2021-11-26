@@ -61,5 +61,23 @@ public class BDdePacientes implements Serializable{
 	public String toString() {
 		return "BDdePacientes [pacientesBD=" + pacientesBD + "]";
 	}
-	
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		BDdePacientes that = (BDdePacientes) o;
+
+		if (generaNumHist != that.generaNumHist) return false;
+		return getPacientesBD() != null ? getPacientesBD().equals(that.getPacientesBD()) : that.getPacientesBD() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = generaNumHist;
+		result = 31 * result + (getPacientesBD() != null ? getPacientesBD().hashCode() : 0);
+		return result;
+	}
 }

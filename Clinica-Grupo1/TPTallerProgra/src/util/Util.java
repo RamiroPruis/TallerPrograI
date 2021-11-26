@@ -12,8 +12,8 @@ public class Util
     public static ClinicaDTO clinicaDTOFromCLinica() 
     {
 	ClinicaDTO respuesta=new ClinicaDTO();
-	//comento las lineas que creo que no van
-	
+
+
 	respuesta.setDireccion(Clinica.getInstance().getDireccion());
 	respuesta.setFacturas(Clinica.getInstance().getFacturas());
 	respuesta.setHabitaciones(Clinica.getInstance().getHabitaciones());
@@ -32,7 +32,8 @@ public class Util
     
     public static void clinicaFromClinicaDTO(ClinicaDTO clinicaDTO) 
     {
-    	
+
+
     	Clinica.getInstance().setDireccion(clinicaDTO.getDireccion());
     	Clinica.getInstance().setFacturas(clinicaDTO.getFacturas());
     	Clinica.getInstance().setHabitaciones(clinicaDTO.getHabitaciones());
