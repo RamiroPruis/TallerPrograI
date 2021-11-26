@@ -343,11 +343,11 @@ public class Clinica {
      * @return
      */
     public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
-        Factura factura = null;
+        
+    	Factura factura = null;
         double importeParcial = 0;
         double importeTotal = 0;
         double respuesta = 0;
-
         int aleatorio = Util.createRandom();
 
         //busco la factura
@@ -370,9 +370,11 @@ public class Clinica {
                 respuesta = importeTotal;
             } else {
                 double sumavalores = 0;
-                for (Double valor : listaDeInsumos)
-                    sumavalores += valor;
-                respuesta = importeTotal + sumavalores;
+                if (listaDeInsumos != null) {
+                	for (Double valor : listaDeInsumos)
+                        sumavalores += valor;
+                    respuesta = importeTotal + sumavalores;
+                }                
             }
         }
         return respuesta;
