@@ -11,7 +11,7 @@ import testing.escenarios.ClinicaCargadaEscenario;
 
 import java.util.ArrayList;
 
-public class CajaBlancaPrevio {
+public class CajaBlancaPrevioTest {
 
 
     @Before

@@ -320,9 +320,7 @@ public class Clinica {
      */
     public ArrayList<Factura> buscaFacturas(GregorianCalendar inicio, GregorianCalendar fin) {
         ArrayList<Factura> aux = new ArrayList<>();
-
         for (Factura fac : facturas) {
-
             if (fac.getFecha().compareTo(inicio) >= 0 && fac.getFecha().compareTo(fin) <= 0 && fac.getPrestaciones().size() > 0) {
                 aux.add(fac);
             }
