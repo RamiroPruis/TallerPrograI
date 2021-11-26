@@ -1,4 +1,4 @@
-package testing;
+package testing.escenarios;
 
 import excepciones.NoExisteRangoEtarioException;
 import modelo.BDdePacientes;

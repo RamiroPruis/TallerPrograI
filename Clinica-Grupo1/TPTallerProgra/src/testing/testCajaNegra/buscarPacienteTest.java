@@ -1,4 +1,4 @@
-package testing;
+package testing.testCajaNegra;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,7 @@ import modelo.BDdePacientes;
 import modelo.HistoriaClinica;
 import personas.Mayor;
 import personas.Paciente;
+import testing.escenarios.EscenarioBD;
 
 public class buscarPacienteTest {
 

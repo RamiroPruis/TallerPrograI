@@ -1,4 +1,4 @@
-package testing;
+package testing.testCajaNegra;
 
 import static org.junit.Assert.*;
 
@@ -15,6 +15,7 @@ import infraestructura.Prestacion;
 import modelo.HistoriaClinica;
 import modelo.IMedico;
 import modelo.MedicoFactory;
+import testing.escenarios.EscenarioHistoriaClinica;
 
 public class agregarPracticaTest {
 	

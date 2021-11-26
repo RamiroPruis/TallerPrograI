@@ -13,6 +13,8 @@ import infraestructura.Prestacion;
 import modelo.Clinica;
 import modelo.IMedico;
 import personas.Paciente;
+import testing.testGUI.GUITestDatos;
+import testing.testGUI.TestUtils;
 
 import javax.swing.JTabbedPane;
 import java.awt.GridLayout;
@@ -251,6 +253,7 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 		this.panel_25.add(this.panel_45);
 		
 		this.textField_cantDias = new JTextField();
+
 		this.panel_45.add(this.textField_cantDias);
 		this.textField_cantDias.setColumns(10);
 		
@@ -297,7 +300,21 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 		this.panel_historias = new JPanel();
 		this.panel_Datos.add(this.panel_historias);
 		
-		
+		//SETEA NOMBRES DE ELEMENTOS
+		this.tabbedPane.setName("tabbedPane");
+		this.btn_Atender.setName("btn_Atender");
+		this.btn_Cargar.setName("btn_Cargar");
+		this.btn_Egreso.setName("btn_Egreso");
+		this.btn_Serializar.setName("btn_Serializar");
+		this.btn_PrestacionHabitacion.setName("btn_PrestacionHabitacion");
+		this.btn_PrestacionMedica.setName("btn_PrestacionMedica");
+		this.list_habitaciones.setName("list_habitaciones");
+		this.list_medicos.setName("list_medicos");
+		this.list_pacientes.setName("list_pacientes");
+		this.list_facturas.setName("list_facturas");
+		this.textField_cantDias.setName("textField_cantDias");
+		//SETEA NOMBRES DE ELEMENTOS
+
 		this.setVisible(true);
 	}
 
@@ -411,7 +428,8 @@ public class Ventana extends JFrame implements IVistaPaciente,IVistaMedico,IVist
 	}
 	@Override
 	public void mensaje(String msj) {
-		JOptionPane.showMessageDialog(this, msj);		
+		TestUtils.getMensaje(msj);
+		JOptionPane.showMessageDialog(this,msj);
 	}
 	@Override
 	public void borraLista() {
