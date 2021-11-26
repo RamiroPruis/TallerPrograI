@@ -347,7 +347,7 @@ public class Clinica {
         double importeTotal = 0;
         double respuesta = 0;
         int aleatorio = Util.createRandom();
-
+        System.out.println(aleatorio);
         //busco la factura
         for (Factura facturaact : this.facturas) {
             if (facturaact.getNroFactura() == numeroDeFactura) {           	

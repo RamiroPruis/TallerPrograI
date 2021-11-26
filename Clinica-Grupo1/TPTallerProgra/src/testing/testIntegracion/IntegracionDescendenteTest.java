@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mock;
 import personas.Joven;
 import personas.Medico;
 import personas.Nino;
@@ -36,16 +37,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class IntegracionDescendenteTest {
-    Factura facturaMock;
+    private Factura facturaMock;
+    ArrayList<Prestacion> prestaciones;
+
     @Before
     public void setUp() throws Exception{
-        facturaMock = mock(Factura.class);
-        ArrayList<Prestacion> prestaciones = new ArrayList<>();
+
+
+        prestaciones = new ArrayList<>();
         Prestacion prestacion1 = new Prestacion("",1,1);
         Prestacion prestacion2 = new Prestacion("fff",1,1);
         prestaciones.add(prestacion1);
         prestaciones.add(prestacion2);
-        when(facturaMock.getPrestaciones()).thenReturn(prestaciones);
     }
 
     @After
@@ -108,14 +111,23 @@ public class IntegracionDescendenteTest {
 
     @Test
   public void ramaFactura(){
-      Clinica clinica = Clinica.getInstance();
-      GregorianCalendar inicio,fin;
+        //SETEO MOCK
+      facturaMock = mock(Factura.class);
+      when(facturaMock.getPrestaciones()).thenReturn(prestaciones);
+      when(facturaMock.getFecha()).thenReturn(new GregorianCalendar());
+        Clinica clinica = new ClinicaCargadaEscenario().getClinica();
 
+        clinica.getFacturas().clear();
+        for(int i=0;i<4;i++)
+            clinica.getFacturas().add(facturaMock);
+        //SETEO MOCK
+
+        GregorianCalendar inicio,fin;
 
       inicio = new GregorianCalendar(2021,Calendar.NOVEMBER,23);
       fin = new GregorianCalendar(2021,Calendar.NOVEMBER,27);
       ArrayList<Factura> facturas = clinica.buscaFacturas(inicio,fin);
-      assertNotEquals("Deberia encontrar facturas",0,facturas.size());
+     assertNotEquals("Deberia encontrar facturas",0,facturas.size());
 
     }
 }
