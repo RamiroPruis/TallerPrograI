@@ -349,10 +349,10 @@ public class Clinica {
         double importeTotal = 0;
         double respuesta = 0;
         int aleatorio = Util.createRandom();
-
+        
         //busco la factura
         for (Factura facturaact : this.facturas) {
-            if (facturaact.getNroFactura() == nroFactura) {
+            if (facturaact.getNroFactura() == numeroDeFactura) {
                 factura = facturaact;
             }
         }
