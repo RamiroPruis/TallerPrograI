@@ -111,6 +111,8 @@ public class Prueba {
         Controlador  controlador = new Controlador(ventana,ventana,ventana,ventana);
 
 
+
+        //Esto es para la caja BLANCA
 		Factura factura = Clinica.getInstance().getFacturas().first();
 		ArrayList<Double> insumos = new ArrayList<Double>();
 		insumos.add(20.0);

@@ -1,7 +1,7 @@
 package modelo;
 
 public abstract class DecoratorContratacion implements IMedico {
-protected IMedico encapsulado;
+	protected IMedico encapsulado;
 
 	//Constructores
 	public DecoratorContratacion(IMedico encapsulado) {
@@ -19,4 +19,18 @@ protected IMedico encapsulado;
 		return this.encapsulado.getEspecialidad();
 	}
 
+	@Override
+	public boolean equals(IMedico o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		DecoratorContratacion that = (DecoratorContratacion) o;
+
+		return encapsulado != null ? encapsulado.equals(that.encapsulado) : that.encapsulado == null;
+	}
+
+	@Override
+	public int hashCode() {
+		return encapsulado != null ? encapsulado.hashCode() : 0;
+	}
 }
