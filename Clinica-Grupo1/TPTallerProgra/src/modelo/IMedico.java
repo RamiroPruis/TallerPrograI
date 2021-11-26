@@ -12,4 +12,9 @@ public interface IMedico extends Serializable{
 	
 	String getNombre();
 
+	boolean equals(IMedico o);
+
+
+
+
 }

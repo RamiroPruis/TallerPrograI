@@ -70,17 +70,6 @@ public class ClinicaCargadaTest {
         assertEquals("La habitacion no se deberia encontrar",null,clinica.buscaHabitacion(nroHab));
     }
 
-    @Test
-    public void buscaUltimaCorrectaTest() {
-        Clinica clinica = clinicaCargadaEscenario.getClinica();
-        Paciente p1 = clinicaCargadaEscenario.getPaciente();
-        IMedico medico = clinicaCargadaEscenario.getMedico();
-        clinica.atenderPaciente(p1);
-        Factura f1 = clinica.getFacturas().last();
-        assertEquals("La factura deberia ser la ultima factura del paciente",f1,clinica.buscaUltima(p1));
-
-    }
-
 
     @Test
     public void buscaHistoriaCorrectaTest() {
