@@ -112,11 +112,6 @@ public class Prueba {
 
 
 
-        //Esto es para la caja BLANCA
-		Factura factura = Clinica.getInstance().getFacturas().first();
-		ArrayList<Double> insumos = new ArrayList<Double>();
-		insumos.add(20.0);
-		insumos.add(24.0);
-        Clinica.getInstance().calculoImporteAdicionales(factura.getNroFactura(), factura.getFecha(),insumos);
+
 	}
 }

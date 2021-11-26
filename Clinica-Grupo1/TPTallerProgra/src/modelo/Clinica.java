@@ -6,6 +6,7 @@ import infraestructura.Habitacion;
 import infraestructura.Prestacion;
 import infraestructura.SalaDeEspera;
 import personas.Paciente;
+import util.Util;
 
 import java.util.*;
 
@@ -342,16 +343,16 @@ public class Clinica {
      * @return
      */
     public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud, ArrayList<Double> listaDeInsumos) {
-        Factura factura = null;
+        
+    	Factura factura = null;
         double importeParcial = 0;
         double importeTotal = 0;
         double respuesta = 0;
-        Random random = new Random();
-        int aleatorio = random.nextInt(31) + 1;
-
+        int aleatorio = Util.createRandom();
+        
         //busco la factura
         for (Factura facturaact : this.facturas) {
-            if (facturaact.getNroFactura() == nroFactura) {
+            if (facturaact.getNroFactura() == numeroDeFactura) {
                 factura = facturaact;
             }
         }
@@ -369,9 +370,11 @@ public class Clinica {
                 respuesta = importeTotal;
             } else {
                 double sumavalores = 0;
-                for (Double valor : listaDeInsumos)
-                    sumavalores += valor;
-                respuesta = importeTotal + sumavalores;
+                if (listaDeInsumos != null) {
+                	for (Double valor : listaDeInsumos)
+                        sumavalores += valor;
+                }    
+                respuesta = importeTotal + sumavalores;               
             }
         }
         return respuesta;

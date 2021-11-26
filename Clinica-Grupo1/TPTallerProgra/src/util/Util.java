@@ -49,6 +49,11 @@ public class Util
     	Clinica.getInstance().setNroFactura(clinicaDTO.getNroFactura());
 	
     }
+
+	public static int createRandom(){
+		Random r = new Random();
+		return r.nextInt(31)+1;
+	}
     
     
 }

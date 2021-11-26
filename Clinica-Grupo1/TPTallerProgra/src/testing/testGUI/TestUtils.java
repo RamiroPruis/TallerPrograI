@@ -128,7 +128,6 @@ public class TestUtils {
     }
 
     public static void setMensaje(String msg){
-        System.out.println(msg);
         msgDialog = msg;
     }
 
