@@ -350,26 +350,28 @@ public class Clinica {
 
         //busco la factura
         for (Factura facturaact : this.facturas) {
-            if (facturaact.getNroFactura() == numeroDeFactura) {
+            if (facturaact.getNroFactura() == numeroDeFactura) {           	
                 factura = facturaact;
             }
         }
 
         if (factura != null) {
-            if ((factura.getFecha().get(Calendar.DAY_OF_YEAR) - fechaDeSolicitud.get(Calendar.DAY_OF_YEAR) < 10)) {
+            if (Math.abs(factura.getFecha().get(Calendar.DAY_OF_YEAR) - fechaDeSolicitud.get(Calendar.DAY_OF_YEAR)) < 10) {
                 importeParcial = factura.getImporteTotal() - (factura.getSubTotalImpar() * 0.7);
-            } else
-                importeParcial = factura.getImporteTotal() * 0.3;
+            } else 
+                importeParcial = factura.getImporteTotal() * 0.3;            
             if (factura.getPaciente().getRangoEtario().equalsIgnoreCase("mayor")) {
-                importeTotal = importeParcial * 1.4;
-            } else
+                importeTotal = importeParcial * 1.4;                
+            } else 
                 importeTotal = importeParcial * 0.85;
-            if (aleatorio == factura.getFecha().get(Calendar.DAY_OF_MONTH)) {
+            if (aleatorio == factura.getFecha().get(Calendar.DAY_OF_MONTH)) {            	
                 respuesta = importeTotal;
             } else {
                 double sumavalores = 0;
-                for (Double valor : listaDeInsumos)
-                    sumavalores += valor;
+                if (listaDeInsumos!=null) {
+                	for (Double valor : listaDeInsumos)
+                        sumavalores += valor;
+                }                
                 respuesta = importeTotal + sumavalores;
             }
         }
