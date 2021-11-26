@@ -40,7 +40,7 @@ public class PersistenciaTest {
             assertTrue("Deberia existir el archivo clinicaPersistida.bin", file.exists());
 
         } catch (IOException e) {
-            fail("No deberia entrar aca");
+            fail("No deberia entrar aca porque el archivo deberia crearse sin problema");
         }
     }
 
@@ -71,11 +71,11 @@ public class PersistenciaTest {
 
 
             } catch (ClassNotFoundException e) {
-                fail("No deberia entrar aca");
+                fail("No deberia entrar aca porque el archivo deberia encontrarse sin problema, porque ya fue previamente creado");
             }
 
         } catch (IOException e) {
-            fail("No deberia entrar aca");
+            fail("No deberia entrar aca porque el archivo deberia crearse sin problema");
         }
     }
 
@@ -101,14 +101,12 @@ public class PersistenciaTest {
                 persistencia.cerrarOutput();
                 assertTrue("Las clinicas deben ser iguales", clinicaDespersistida.equals(clinicaDTO));
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                fail("No deberia entrar aca porque el archivo deberia encontrarse sin problema, porque ya fue previamente creado");
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            fail("No deberia entrar aca porque el archivo deberia crearse sin problema");
         }
-
-        //Despersistimos
 
     }
 
